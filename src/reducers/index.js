@@ -1,42 +1,43 @@
 import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS } from '../actions'
 
+function randomWord() {
+  let words = ["shit", "man", "child", "kill"]
+  return words[Math.floor(Math.random() * words.length)];
+}
+
+let operands = "+-×÷";
+
+
+
 const initialState = {
-  letterCharArr: [],
-  operandCharArr: [],
+  letterCharArr: randomWord().split(""),
+  operandCharArr: operands.split(""),
   solutionCharArr: [],
   answerSubmitted: false
 }
 
 function quassinoballyApp(state = initialState, action) {
-  console.log("ok it starts")
-  // console.log(action.type)
-  console.log(action)
+  // console.log(action)
   switch (action.type) {
     case ADD_CHAR:
-      console.log(action.box.type);
+      console.log(state)
       if(action.box.type === "letter") {
-        console.log("its a letter")
-        let returnVal = Object.assign({}, state, {
-          letterCharArr: state.letterCharArr.push(action.char)
-        });
-        // console.log(returnVal);
-        return returnVal;
+        return {
+          ...state,
+          letterCharArr: [...state.letterCharArr, action.char.value]
+        }
       }
       else if(action.box.type === "operand") {
-        console.log(action.char);
-        return Object.assign({}, state, {
-          operandCharArr: state.operandCharArr.push(action.char)
+        return {
+          ...state,
+          operandCharArr: [...state.operandCharArr, action.char.value]
         }
-      )}
+      }
       else if(action.box.type === "solution") {
-        let character = action.char;
-        let wtf = state.solutionCharArr.push(character);
-        let returnVal = Object.assign({}, state, {
-          solutionCharArr: state.solutionCharArr.push(character)
-        })
-        // state.solutionCharArr.push(character);
-        console.log(returnVal);
-        return returnVal;
+        return {
+          ...state,
+          solutionCharArr: [...state.solutionCharArr, action.char.value]
+        }
       }
       else {
         console.log(action.box.type)
@@ -46,6 +47,7 @@ function quassinoballyApp(state = initialState, action) {
     case SUBMIT_ANS:
       console.log("submit ans");
     default:
+      // console.log("default");
       return state
   }
 }

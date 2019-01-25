@@ -1,5 +1,6 @@
 import React from 'react';
-import Box from './Box';
+// import Box from './Box';
+import Box from '../../containers/Box';
 import LetterBox from './LetterBox';
 import OperandBox from './OperandBox';
 import SolutionBox from './SolutionBox';
