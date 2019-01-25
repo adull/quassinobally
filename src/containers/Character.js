@@ -13,7 +13,7 @@ function collect(connect, monitor) {
 
 const charSource = {
   beginDrag(props) {
-    console.log("begin drag")
+    // console.log("begin drag")
     return {props};
   },
   endDrag(props) {
@@ -29,10 +29,11 @@ const mapStateToProps = state => {
 
 // const mapDispatchToProps =
 
-function Character({value, type, connectDragSource, isDragging }) {
+function Character({value, type, currentBox, connectDragSource, isDragging }) {
+  // console.log(value)
   return connectDragSource(
-    <div className={"character " + type + "-character"}>
-      {value}
+    <div className={"character " + value.type + "-character"}>
+      {value.value}
     </div>
   )
 }

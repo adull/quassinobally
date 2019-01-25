@@ -10,10 +10,11 @@ export function addChar(char, box) {
   }
 }
 
-export function removeChar(char, box) {
+export function removeChar(char, index, box) {
   return {
     type: REMOVE_CHAR,
     char,
+    index,
     box
   }
 }

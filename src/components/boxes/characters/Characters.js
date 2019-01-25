@@ -1,7 +1,5 @@
 import React from 'react';
-// import Character from './Character';
 import Character from '../../../containers/Character'
-import { observe } from '../../game/GameLaws';
 
 
 class Characters extends React.Component {
@@ -10,22 +8,31 @@ class Characters extends React.Component {
   }
 
   render() {
-    let type = this.props.type;
-    let value = []
-    if(type === "letter") {
+    // this is wild inefficient but it works will clean up later in
+    // getting this logic out of the render function
+    let boxType = this.props.boxType;
+    let value = [];
+    if(boxType === "letter") {
       value = this.props.letterCharArr;
     }
-    else if(type === "operand") {
+    else if(boxType === "operand") {
       value = this.props.operandCharArr;
     }
-    else if(type === "solution") {
+    else if(boxType === "solution") {
       value = this.props.solutionCharArr;
     }
-    console.log()
+    let operandValuesArr = ["+","-","×","÷","(",")"];
+    let letterType = "";
     let characterArr = []
     for(var i = 0; i < value.length; i ++) {
+      if(operandValuesArr.includes(value[i])) {
+        letterType = "operand";
+      }
+      else {
+        letterType = "letter";
+      }
       characterArr.push(
-        <Character key={i} value={value[i]} type={type}/>
+        <Character key={i} value={value[i]} type={letterType} currentBox={this.props.currentBox}/>
       )
     }
 

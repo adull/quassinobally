@@ -1,49 +1,104 @@
 import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS } from '../actions'
+import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
 function randomWord() {
   let words = ["shit", "man", "child", "kill"]
   return words[Math.floor(Math.random() * words.length)];
 }
 
-let operands = "+-×÷";
+function makeHash() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+  for (var i = 0; i < 15; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
 
+  return text;
+}
+
+function makeCharArr(value, type) {
+  let charArr = [];
+  for(var  i = 0; i < value.length; i ++) {
+    charArr.push({
+      type: type,
+      value: value[i],
+      identifier: makeHash()
+    })
+  }
+  return charArr
+}
+
+let operands = "+-×÷()";
 
 const initialState = {
-  letterCharArr: randomWord().split(""),
-  operandCharArr: operands.split(""),
+  letterCharArr: makeCharArr(randomWord(), 'letter'),
+  operandCharArr: makeCharArr(operands, 'operand'),
   solutionCharArr: [],
   answerSubmitted: false
 }
 
 function quassinoballyApp(state = initialState, action) {
-  // console.log(action)
+  // console.log(state)
   switch (action.type) {
     case ADD_CHAR:
-      console.log(state)
+      console.log("add char")
+      let newChar = {
+        type: action.char.type,
+        value: action.char.value,
+        identifier: makeHash()
+      }
+      console.log(newChar);
       if(action.box.type === "letter") {
         return {
           ...state,
-          letterCharArr: [...state.letterCharArr, action.char.value]
+          letterCharArr: [...state.letterCharArr, newChar]
         }
       }
       else if(action.box.type === "operand") {
         return {
           ...state,
-          operandCharArr: [...state.operandCharArr, action.char.value]
+          operandCharArr: [...state.operandCharArr, newChar]
         }
       }
       else if(action.box.type === "solution") {
         return {
           ...state,
-          solutionCharArr: [...state.solutionCharArr, action.char.value]
+          solutionCharArr: [...state.solutionCharArr, newChar]
         }
+      }
+      else {
+        console.log(action)
+        console.log(action.box.type)
+      }
+    case REMOVE_CHAR:
+      let charHash = action.char.identifier;
+      if(action.box.type === "letter") {
+        let removeIndex = getIndexOfHash(charHash, state.letterCharArr);
+        return {
+          ...state,
+          letterCharArr: [
+            ...state.letterCharArr.slice(0, removeIndex),
+            ...state.letterCharArr.slice(removeIndex + 1, )
+          ]
+        }
+        return state;
+      }
+      else if(action.box.type === "solution") {
+        let removeIndex = getIndexOfHash(charHash, state.solutionCharArr);
+        return {
+          ...state,
+          solutionCharArr: [
+            ...state.solutionCharArr.slice(0, removeIndex),
+            ...state.solutionCharArr.slice(removeIndex + 1, )
+          ]
+        }
+        return state;
       }
       else {
         console.log(action.box.type)
       }
-    case REMOVE_CHAR:
-      console.log("remove char");
+      return state;
+      // console.log("remove char");
     case SUBMIT_ANS:
       console.log("submit ans");
     default:

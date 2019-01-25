@@ -6,18 +6,24 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import arrayIsEqual from '../functions/index.js';
+import * as gameLaws from '../components/game/GameLaws';
+
+console.log(gameLaws);
 
 const boxTarget = {
-  // console.log(dispatch);
   drop(props, monitor, component) {
     let char = monitor.getItem().props;
-    let box = component.props;
+    let fromBox = char.currentBox;
+    let index = char.value.index;
+    let toBox = component.props;
     let dispatch = props.dispatch;
-    dispatch({
-      type: 'ADD_CHAR',
-      char: char,
-      box: box
-    })
+    if(gameLaws.canMoveChar(char, toBox)) {
+      console.log(char);
+      gameLaws.moveChar(char.value, index, fromBox, toBox, dispatch);
+    }
+    else {
+      console.log("cant move")
+    }
   },
   hover(props, monitor, component) {
   }
@@ -33,18 +39,24 @@ function collect(connect, monitor) {
 class Box extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    // console.log(props)
   }
   render() {
-    console.log(this.props.solutionCharArr)
+    // console.log(this.props.solutionCharArr)
     const { connectDropTarget } = this.props;
+
+    let type = ""
+    if(this.props.type === "solution") {
+
+    }
     return connectDropTarget(
       <div className="box">
         <Characters
-          type={this.props.type}
+          boxType={this.props.type}
           letterCharArr={this.props.letterCharArr}
           operandCharArr={this.props.operandCharArr}
-          solutionCharArr={this.props.solutionCharArr} />
+          solutionCharArr={this.props.solutionCharArr}
+          currentBox={this.props} />
       </div>
     )
   }

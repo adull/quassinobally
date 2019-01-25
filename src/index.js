@@ -12,15 +12,6 @@ import reducer from './reducers'
 import { addChar, removeChar, submitAns } from './actions'
 
 const store = createStore(reducer)
-//
-// let box = {type: "letter"};
-//
-// const unsubscribe = store.subscribe(() => console.log(store.getState()))
-//
-// store.dispatch(addChar("e", box));
-//
-// unsubscribe();
-
 
 ReactDOM.render(
   <Provider store={store}>
