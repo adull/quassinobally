@@ -4,8 +4,6 @@ import { addChar, removeChar, submitAns } from  '../../actions'
 
 
 export function canMoveChar(char, toBox) {
-  console.log(char);
-  console.log(toBox);
   if(char.value.type === "letter") {
     if(toBox.type === "operand") {
       return false;

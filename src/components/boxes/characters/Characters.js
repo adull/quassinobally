@@ -5,6 +5,17 @@ import Character from '../../../containers/Character'
 class Characters extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentlyOver: ''
+    }
+    this.isCurrentlyOver = this.isCurrentlyOver.bind(this);
+  }
+
+  isCurrentlyOver(item) {
+    // console.log(item);
+    this.setState({
+      currentlyOver: item
+    })
   }
 
   render() {
@@ -24,15 +35,25 @@ class Characters extends React.Component {
     let operandValuesArr = ["+","-","×","÷","(",")"];
     let letterType = "";
     let characterArr = []
+    // console.log(this.props);
+    let arrType = null;
     for(var i = 0; i < value.length; i ++) {
-      if(operandValuesArr.includes(value[i])) {
-        letterType = "operand";
-      }
-      else {
-        letterType = "letter";
-      }
+      // if(operandValuesArr.includes(value[i])) {
+      //   letterType = "operand";
+      //   arrType = this.operandCharArr;
+      // }
+      // else if(){
+      //   letterType = "letter";
+      // }
+      let isCurrentlyOver =
+
       characterArr.push(
-        <Character key={i} value={value[i]} type={letterType} currentBox={this.props.currentBox}/>
+        <Character key={i}
+                   value={value[i]}
+                   currentBox={this.props.currentBox}
+                   isCurrentlyOver={this.isCurrentlyOver}
+                   currentlyOver={this.state.currentlyOver}
+                   />
       )
     }
 

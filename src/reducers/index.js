@@ -2,7 +2,7 @@ import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
 function randomWord() {
-  let words = ["shit", "man", "child", "kill"]
+  let words = ["this", "man", "child"]
   return words[Math.floor(Math.random() * words.length)];
 }
 

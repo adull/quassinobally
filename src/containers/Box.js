@@ -12,6 +12,7 @@ console.log(gameLaws);
 
 const boxTarget = {
   drop(props, monitor, component) {
+    console.log("dropped in box");
     let char = monitor.getItem().props;
     let fromBox = char.currentBox;
     let index = char.value.index;
@@ -24,8 +25,6 @@ const boxTarget = {
     else {
       console.log("cant move")
     }
-  },
-  hover(props, monitor, component) {
   }
 }
 
