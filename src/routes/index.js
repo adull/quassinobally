@@ -12,7 +12,7 @@ class AppController extends React.Component {
 
   render() {
     return(
-      <BrowserRouter basename={'/quassinobally'}>
+      <BrowserRouter>
         <Switch>
           <Route path={`${process.env.PUBLIC_URL}/`} component={Game} />
         </Switch>
