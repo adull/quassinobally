@@ -11,8 +11,21 @@ export default function arraysEqual(a, b) {
 
 export function getIndexOfHash(hash, array) {
   for(let i = 0; i < array.length; i ++) {
+    // console.log("a")
     if(hash === array[i].identifier) {
       return i;
     }
+  }
+}
+
+export function lengthOfToBox(toBox) {
+  if(toBox.type === "letter") {
+    return toBox.letterCharArr.length;
+  }
+  else if(toBox.type === "operand") {
+    return toBox.operandCharArr.length;
+  }
+  else if(toBox.type === "solution") {
+    return toBox.solutionCharArr.length;
   }
 }

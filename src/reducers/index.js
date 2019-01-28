@@ -38,16 +38,16 @@ const initialState = {
 }
 
 function quassinoballyApp(state = initialState, action) {
-  // console.log(state)
   switch (action.type) {
     case ADD_CHAR:
-      console.log("add char")
+      // console.log("add char")
+      console.log(action.index);
       let newChar = {
         type: action.char.type,
         value: action.char.value,
         identifier: makeHash()
       }
-      console.log(newChar);
+      // console.log(newChar);
       if(action.box.type === "letter") {
         return {
           ...state,

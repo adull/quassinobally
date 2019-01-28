@@ -9,12 +9,19 @@ class Characters extends React.Component {
       currentlyOver: ''
     }
     this.isCurrentlyOver = this.isCurrentlyOver.bind(this);
+    this.removeGap = this.removeGap.bind(this);
   }
 
   isCurrentlyOver(item) {
     // console.log(item);
     this.setState({
       currentlyOver: item
+    })
+  }
+
+  removeGap() {
+    this.setState({
+      currentlyOver: ''
     })
   }
 
@@ -53,6 +60,7 @@ class Characters extends React.Component {
                    currentBox={this.props.currentBox}
                    isCurrentlyOver={this.isCurrentlyOver}
                    currentlyOver={this.state.currentlyOver}
+                   removeGap={this.removeGap}
                    />
       )
     }

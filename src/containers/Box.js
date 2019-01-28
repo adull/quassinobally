@@ -5,22 +5,23 @@ import { DropTarget } from 'react-dnd';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import arrayIsEqual from '../functions/index.js';
+import {arrayIsEqual, lengthOfToBox} from '../functions/index.js';
 import * as gameLaws from '../components/game/GameLaws';
 
-console.log(gameLaws);
-
 const boxTarget = {
+  hover(props, monitor, component) {
+  },
   drop(props, monitor, component) {
-    console.log("dropped in box");
+    // console.log("drop in box");
     let char = monitor.getItem().props;
     let fromBox = char.currentBox;
     let index = char.value.index;
     let toBox = component.props;
     let dispatch = props.dispatch;
+
+    console.log(toBox)
     if(gameLaws.canMoveChar(char, toBox)) {
-      console.log(char);
-      gameLaws.moveChar(char.value, index, fromBox, toBox, dispatch);
+      gameLaws.moveChar(char.value, lengthOfToBox(toBox), fromBox, toBox, dispatch);
     }
     else {
       console.log("cant move")
@@ -31,7 +32,7 @@ const boxTarget = {
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver()
+    isOver: monitor.isOver({shallow: true})
   }
 }
 
@@ -44,10 +45,6 @@ class Box extends React.Component {
     // console.log(this.props.solutionCharArr)
     const { connectDropTarget } = this.props;
 
-    let type = ""
-    if(this.props.type === "solution") {
-
-    }
     return connectDropTarget(
       <div className="box">
         <Characters
