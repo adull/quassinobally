@@ -14,7 +14,7 @@ class AppController extends React.Component {
     return(
       <BrowserRouter basename={'/quassinobally'}>
         <Switch>
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Game} />
+          <Route path={`${process.env.PUBLIC_URL}/`} component={Game} />
         </Switch>
       </BrowserRouter>
     )
