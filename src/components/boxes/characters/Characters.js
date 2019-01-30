@@ -40,20 +40,8 @@ class Characters extends React.Component {
       value = this.props.solutionCharArr;
     }
     let operandValuesArr = ["+","-","×","÷","(",")"];
-    let letterType = "";
     let characterArr = []
-    // console.log(this.props);
-    let arrType = null;
     for(var i = 0; i < value.length; i ++) {
-      // if(operandValuesArr.includes(value[i])) {
-      //   letterType = "operand";
-      //   arrType = this.operandCharArr;
-      // }
-      // else if(){
-      //   letterType = "letter";
-      // }
-      let isCurrentlyOver =
-
       characterArr.push(
         <Character key={i}
                    value={value[i]}

@@ -26,7 +26,7 @@ export function canMoveChar(char, toBox) {
 }
 
 export function moveChar(char, index, fromBox, toBox, dispatch) {
-  console.log(index)
+  // console.log(index)
   if(char.type === "letter") {
     letterMove(char, index, fromBox, toBox, dispatch);
   }
@@ -36,6 +36,7 @@ export function moveChar(char, index, fromBox, toBox, dispatch) {
 }
 
 function letterMove(char, index, fromBox, toBox, dispatch) {
+  // console.log(index);
   dispatch({
     type: 'ADD_CHAR',
     char: char,

@@ -40,8 +40,8 @@ const initialState = {
 function quassinoballyApp(state = initialState, action) {
   switch (action.type) {
     case ADD_CHAR:
-      // console.log("add char")
-      console.log(action.index);
+      // console.log("ADD_CHAR")
+      // console.log(action.index);
       let newChar = {
         type: action.char.type,
         value: action.char.value,
@@ -51,24 +51,36 @@ function quassinoballyApp(state = initialState, action) {
       if(action.box.type === "letter") {
         return {
           ...state,
-          letterCharArr: [...state.letterCharArr, newChar]
+          letterCharArr: [
+            ...state.letterCharArr.slice(0, action.index + 1),
+            newChar,
+            ...state.letterCharArr.slice(action.index + 1)
+          ]
         }
       }
       else if(action.box.type === "operand") {
         return {
           ...state,
-          operandCharArr: [...state.operandCharArr, newChar]
+          operandCharArr: [
+            ...state.operandCharArr.slice(0, action.index + 1),
+            newChar,
+            ...state.operandCharArr.slice(action.index + 1)
+          ]
         }
       }
       else if(action.box.type === "solution") {
         return {
           ...state,
-          solutionCharArr: [...state.solutionCharArr, newChar]
+          solutionCharArr: [
+            ...state.solutionCharArr.slice(0, action.index + 1),
+            newChar,
+            ...state.solutionCharArr.slice(action.index + 1)
+          ]
         }
       }
       else {
-        console.log(action)
-        console.log(action.box.type)
+        // console.log(action)
+        // console.log(action.box.type)
       }
     case REMOVE_CHAR:
       let charHash = action.char.identifier;

@@ -10,11 +10,27 @@ export default function arraysEqual(a, b) {
 }
 
 export function getIndexOfHash(hash, array) {
+  let returnVal = null;
   for(let i = 0; i < array.length; i ++) {
-    // console.log("a")
     if(hash === array[i].identifier) {
       return i;
     }
+  }
+  // console.log(returnVal);
+  console.log("not found in index")
+  return returnVal;
+}
+
+export function getToBoxArr(toBox) {
+  console.log(toBox);
+  if(toBox.type === "letter") {
+    return toBox.letterCharArr;
+  }
+  else if(toBox.type === "operand") {
+    return toBox.operandCharArr;
+  }
+  else if(toBox.type === "solution") {
+    return toBox.solutionCharArr;
   }
 }
 

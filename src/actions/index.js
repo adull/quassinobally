@@ -2,10 +2,11 @@ export const ADD_CHAR = 'ADD_CHAR'
 export const REMOVE_CHAR = 'REMOVE_CHAR'
 export const SUBMIT_ANS = 'SUBMIT_ANS'
 
-export function addChar(char, box) {
+export function addChar(char, index, box) {
   return{
     type: ADD_CHAR,
     char,
+    index,
     box
   }
 }

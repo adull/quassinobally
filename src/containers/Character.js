@@ -5,12 +5,11 @@ import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import getIndexOfHash from '../functions';
+import * as functions from '../functions';
 import * as gameLaws from '../components/game/GameLaws';
 
 
 function collectDrag(connect, monitor) {
-  // console.log(connect)
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
@@ -20,9 +19,7 @@ function collectDrag(connect, monitor) {
 function collectDrop(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    // isOver: monitor.isOver()
-    // isOver: monitor.isOver()
-    isOver: monitor.isOver({shallow: true})
+    isOverCurrent: monitor.isOver({shallow: true})
   }
 }
 
@@ -45,18 +42,29 @@ const charSourceDrop = {
   },
   drop(props, monitor, component) {
     let dispatch = props.dispatch;
-    let hash = props.currentlyOver;
-    let boxType = props.currentBox.type;
-
-    let box = monitor.getItem().props;
-    let fromBox = box.currentBox.type;
-    let toBox = component.props.currentBox;
-
-    let dropIndex = getIndexOfHash(hash, toBox);
+    console.log(monitor.getItem())
+    // console.log(props)
+    // console.log(component)
+    let char = monitor.getItem().props.value;
+    let dropOnHash = props.currentlyOver;
+    let fromBox = monitor.getItem().props.currentBox;
+    let toBox = props.currentBox;
+    let toBoxArr = functions.getToBoxArr(toBox);
+    let dropIndex = functions.getIndexOfHash(dropOnHash, toBoxArr);
 
 
     if(gameLaws.canMoveChar(props, toBox)) {
-      gameLaws.moveChar(props.value.value, dropIndex, fromBox, toBox, dispatch);
+      //below is good
+      // console.log(box.value)
+
+      //below is NOT good
+      console.log(dropIndex)
+      console.log(fromBox)
+      console.log(toBox)
+
+      //below is good
+      // console.log(dispatch)
+      gameLaws.moveChar(char, dropIndex, fromBox, toBox, dispatch);
     }
     else {
       console.log("cant move")
@@ -71,7 +79,11 @@ const mapStateToProps = state => {
 export class Character extends React.Component {
   constructor(props) {
     super();
+    // console.log(props)
     this.state = {
+      type: props.value.type,
+      value: props.value.value,
+      identifier: props.value.identifier,
       pushLeft: false
     }
   }

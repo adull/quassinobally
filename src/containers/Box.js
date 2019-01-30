@@ -12,19 +12,30 @@ const boxTarget = {
   hover(props, monitor, component) {
   },
   drop(props, monitor, component) {
-    // console.log("drop in box");
-    let char = monitor.getItem().props;
-    let fromBox = char.currentBox;
-    let index = char.value.index;
-    let toBox = component.props;
-    let dispatch = props.dispatch;
+    //returns false if dropped in character
+    let exclusivelyDropped = monitor.isOver({ shallow: true });
+    if(exclusivelyDropped) {
+      let char = monitor.getItem().props;
+      let fromBox = char.currentBox;
+      let index = char.value.index;
+      let toBox = component.props;
+      let dispatch = props.dispatch;
 
-    console.log(toBox)
-    if(gameLaws.canMoveChar(char, toBox)) {
-      gameLaws.moveChar(char.value, lengthOfToBox(toBox), fromBox, toBox, dispatch);
-    }
-    else {
-      console.log("cant move")
+      console.log(fromBox)
+      console.log(toBox);
+
+      // console.log(toBox)
+      if(gameLaws.canMoveChar(char, toBox)) {
+        // console.log(char.value)
+        // console.log(lengthOfToBox(toBox))
+        // console.log(fromBox)
+        // console.log(toBox)
+        // console.log(dispatch)
+        gameLaws.moveChar(char.value, lengthOfToBox(toBox), fromBox, toBox, dispatch);
+      }
+      else {
+        console.log("cant move")
+      }
     }
   }
 }
@@ -42,6 +53,7 @@ class Box extends React.Component {
     // console.log(props)
   }
   render() {
+    // console.log(this);
     // console.log(this.props.solutionCharArr)
     const { connectDropTarget } = this.props;
 
