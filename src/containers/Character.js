@@ -54,16 +54,6 @@ const charSourceDrop = {
 
 
     if(gameLaws.canMoveChar(props, toBox)) {
-      //below is good
-      // console.log(box.value)
-
-      //below is NOT good
-      console.log(dropIndex)
-      console.log(fromBox)
-      console.log(toBox)
-
-      //below is good
-      // console.log(dispatch)
       gameLaws.moveChar(char, dropIndex, fromBox, toBox, dispatch);
     }
     else {

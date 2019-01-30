@@ -20,6 +20,7 @@ class Characters extends React.Component {
   }
 
   removeGap() {
+    console.log("remove gap");
     this.setState({
       currentlyOver: ''
     })

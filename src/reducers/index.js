@@ -1,8 +1,10 @@
 import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
+var randomWords = require('random-words');
+
 function randomWord() {
-  let words = ["this", "man", "child"]
+  let words = ["hat", "man", "has"]
   return words[Math.floor(Math.random() * words.length)];
 }
 
@@ -30,8 +32,14 @@ function makeCharArr(value, type) {
 
 let operands = "+-×÷()";
 
+// use in prod
+// let randWord = randomWords({exactly:1, maxLength: 10})[0];
+
+// use in dev
+let randWord = randomWord();
+
 const initialState = {
-  letterCharArr: makeCharArr(randomWord(), 'letter'),
+  letterCharArr: makeCharArr(randWord, 'letter'),
   operandCharArr: makeCharArr(operands, 'operand'),
   solutionCharArr: [],
   answerSubmitted: false
