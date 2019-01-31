@@ -1,4 +1,4 @@
-import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS } from '../actions'
+import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
 var randomWords = require('random-words');
@@ -42,10 +42,12 @@ const initialState = {
   letterCharArr: makeCharArr(randWord, 'letter'),
   operandCharArr: makeCharArr(operands, 'operand'),
   solutionCharArr: [],
+  noGaps: true,
   answerSubmitted: false
 }
 
 function quassinoballyApp(state = initialState, action) {
+  console.log(action.type);
   switch (action.type) {
     case ADD_CHAR:
       // console.log("ADD_CHAR")
@@ -121,6 +123,11 @@ function quassinoballyApp(state = initialState, action) {
       // console.log("remove char");
     case SUBMIT_ANS:
       console.log("submit ans");
+    case TOGGLE_GAPS:
+      return {
+        ...state,
+        noGaps: !state.noGaps
+      }
     default:
       // console.log("default");
       return state

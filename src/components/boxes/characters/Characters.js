@@ -10,17 +10,20 @@ class Characters extends React.Component {
     }
     this.isCurrentlyOver = this.isCurrentlyOver.bind(this);
     this.removeGap = this.removeGap.bind(this);
+    this.removeAllGaps = this.removeAllGaps.bind(this);
+  }
+
+  removeAllGaps() {
+    console.log("remove all gaps");
   }
 
   isCurrentlyOver(item) {
-    // console.log(item);
     this.setState({
       currentlyOver: item
     })
   }
 
   removeGap() {
-    console.log("remove gap");
     this.setState({
       currentlyOver: ''
     })

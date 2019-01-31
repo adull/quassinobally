@@ -4,6 +4,56 @@ import { addChar, removeChar, submitAns } from  '../../actions'
 
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
+function checkSolutionValidity(solutionCharArr) {
+  let parenthesesArr = [];
+  let nonParenthesesArr = [];
+  let shitIsWrong = false;
+  for(let i = 0; i < solutionCharArr.length; i ++) {
+    console.log(solutionCharArr[i])
+    let char = solutionCharArr[i].value;
+    let type = solutionCharArr[i].type;
+    if(char === "(" ) {
+      parenthesesArr.push(char);
+    }
+    else if(char === ")") {
+      if(parenthesesArr.length > 0) {
+        parenthesesArr.pop();
+      }
+      else {
+        shitIsWrong = true;
+      }
+    }
+    else {
+      nonParenthesesArr.push(type);
+    }
+  }
+  if(shitIsWrong === true) {
+    return false;
+  }
+  if(parenthesesArr.length > 0) {
+    return false;
+  }
+  else {
+    let shitIsWrongTwo = false;
+    for(let j = 0; j < nonParenthesesArr.length; j ++) {
+      if( j % 2 === 0) {
+        if(nonParenthesesArr[j] != "letter") {
+          shitIsWrongTwo = true;
+        }
+      }
+      if( j + 1 % 2 === 0) {
+        if(nonParenthesesArr[j] != "operand") {
+          shitIsWrongTwo = true;
+        }
+      }
+    }
+    console.log(shitIsWrongTwo)
+    return !shitIsWrongTwo;
+  }
+  console.log(parenthesesArr);
+  console.log(nonParenthesesArr)
+
+}
 
 function evaluateSolutionArr(charArr) {
   let solutionExpression = "";
@@ -24,17 +74,26 @@ function evaluateSolutionArr(charArr) {
 }
 
 export function submitAnswer(props) {
-  let answerEvaluation = evaluateSolutionArr(props.solutionCharArr)
-  if(props.letterCharArr.length > 0) {
-    alert("must use all characters");
-  }
-  if(answerEvaluation % 27 === 0) {
-    alert("worked!")
+  let validity = checkSolutionValidity(props.solutionCharArr);
+  if(validity === true) {
+    let answerEvaluation = evaluateSolutionArr(props.solutionCharArr)
+    if(props.letterCharArr.length > 0) {
+      alert("must use all characters");
+      return;
+    }
+    if(answerEvaluation % 27 === 0) {
+      alert("worked!")
+      return;
+    }
+    else {
+      alert("you got it wrong! your answer evaluates to " + alphabet[answerEvaluation - 1 % 27]);
+      return;
+    }
   }
   else {
-    alert("you got it wrong! your answer evaluates to " + alphabet[answerEvaluation % 27]);
+    alert("solution is not valid")
+    return;
   }
-  // console.log(solution)
 
 }
 
@@ -95,12 +154,26 @@ function operandMove(char, index, fromBox, toBox, dispatch) {
       box: fromBox
     });
   }
-  else if(toBox.type === "solution") {
+  else if(toBox.type === "solution" && fromBox.type === "operand") {
     dispatch({
       type: 'ADD_CHAR',
       char: char,
       index: index,
       box: toBox
+    });
+  }
+  else if(toBox.type === "solution" && fromBox.type === "solution") {
+    dispatch({
+      type: 'ADD_CHAR',
+      char: char,
+      index: index,
+      box: toBox
+    });
+    dispatch({
+      type: 'REMOVE_CHAR',
+      char: char,
+      index: index,
+      box: fromBox
     });
   }
 }

@@ -25,11 +25,19 @@ function collectDrop(connect, monitor) {
 
 const charSourceDrag = {
   beginDrag(props) {
-    // console.log("begin drag")
+    console.log("begin drag")
+    let dispatch = props.dispatch;
+    dispatch({
+      type: 'TOGGLE_GAPS'
+    })
     return {props};
   },
   endDrag(props) {
-    // console.log(props);
+    console.log("enddrag")
+    let dispatch = props.dispatch;
+    dispatch({
+      type: 'TOGGLE_GAPS'
+    })
     props.removeGap();
     return{props};
   }
@@ -78,13 +86,10 @@ export class Character extends React.Component {
     }
   }
   render(){
-
-    // console.log(this.state)
-    // console.log(this.props);
     let currentlyOver = this.props.currentlyOver;
     let identifier = this.props.value.identifier;
     const { connectDropTarget, connectDragSource } = this.props;
-    let pushLeft = (currentlyOver === identifier) ? "push-left" : ""
+    let pushLeft = (currentlyOver === identifier && !this.props.noGaps) ? "push-left" : ""
 
     return connectDragSource(connectDropTarget(
       <div className={"character " + this.props.value.type + "-character " + pushLeft}>
