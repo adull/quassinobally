@@ -1,4 +1,11 @@
-import { ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS } from '../actions'
+// import {
+//   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
+//   TOGGLE_HOME_PAGE, TOGGLE_GAME_PAGE, TOGGLE_INSTRUCTIONS_PAGE
+// } from '../actions'
+import {
+  ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
+  SET_PAGE
+} from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
 var randomWords = require('random-words');
@@ -33,31 +40,32 @@ function makeCharArr(value, type) {
 let operands = "+-×÷()";
 
 // use in prod
-// let randWord = randomWords({exactly:1, maxLength: 10})[0];
+let randWord = randomWords({exactly:1, maxLength: 10})[0];
 
 // use in dev
-let randWord = randomWord();
+// let randWord = randomWord();
 
 const initialState = {
   letterCharArr: makeCharArr(randWord, 'letter'),
   operandCharArr: makeCharArr(operands, 'operand'),
   solutionCharArr: [],
   noGaps: true,
-  answerSubmitted: false
+  answerSubmitted: false,
+  correctSubmittedAnswer: false,
+  incorrectSubmittedAnswer: false,
+  showHome: true,
+  showGame: false,
+  showInstructions: false
 }
 
 function quassinoballyApp(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
     case ADD_CHAR:
-      // console.log("ADD_CHAR")
-      // console.log(action.index);
       let newChar = {
         type: action.char.type,
         value: action.char.value,
         identifier: makeHash()
       }
-      // console.log(newChar);
       if(action.box.type === "letter") {
         return {
           ...state,
@@ -89,8 +97,6 @@ function quassinoballyApp(state = initialState, action) {
         }
       }
       else {
-        // console.log(action)
-        // console.log(action.box.type)
       }
     case REMOVE_CHAR:
       let charHash = action.char.identifier;
@@ -120,16 +126,54 @@ function quassinoballyApp(state = initialState, action) {
         console.log(action.box.type)
       }
       return state;
-      // console.log("remove char");
     case SUBMIT_ANS:
-      console.log("submit ans");
+      return {
+        ...state,
+        correctSubmittedAnswer: !state.correctSubmittedAnswer
+      }
     case TOGGLE_GAPS:
       return {
         ...state,
         noGaps: !state.noGaps
       }
+    case NEW_PUZZLE:
+      return {
+        ...state,
+        letterCharArr: makeCharArr(randomWords({exactly:1, maxLength: 10})[0], 'letter'),
+        operandCharArr: makeCharArr(operands, 'operand'),
+        solutionCharArr: [],
+        noGaps: true,
+        answerSubmitted: false,
+        correctSubmittedAnswer: false,
+        incorrectSubmittedAnswer: false
+      }
+    case SET_PAGE:
+      console.log(action)
+      if(action.page === "home") {
+        return {
+          ...state,
+          showHome: true,
+          showGame: false,
+          showInstructions: false
+        }
+      }
+      else if(action.page === "game") {
+        return {
+          ...state,
+          showHome: false,
+          showGame: true,
+          showInstructions: false
+        }
+      }
+      if(action.page === "instructions") {
+        return {
+          ...state,
+          showHome: false,
+          showGame: false,
+          showInstructions: true
+        }
+      }
     default:
-      // console.log("default");
       return state
   }
 }

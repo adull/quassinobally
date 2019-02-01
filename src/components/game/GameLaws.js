@@ -2,14 +2,17 @@ import { createStore } from 'redux'
 import reducer from '../../reducers'
 import { addChar, removeChar, submitAns } from  '../../actions'
 
-var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+export function newPuzzle(dispatch) {
+  dispatch({
+    type: 'NEW_PUZZLE'
+  })
+}
 
 function checkSolutionValidity(solutionCharArr) {
   let parenthesesArr = [];
   let nonParenthesesArr = [];
   let shitIsWrong = false;
   for(let i = 0; i < solutionCharArr.length; i ++) {
-    console.log(solutionCharArr[i])
     let char = solutionCharArr[i].value;
     let type = solutionCharArr[i].type;
     if(char === "(" ) {
@@ -27,9 +30,13 @@ function checkSolutionValidity(solutionCharArr) {
       nonParenthesesArr.push(type);
     }
   }
+  if(nonParenthesesArr[nonParenthesesArr.length - 1] === "operand") {
+    return false;
+  }
   if(shitIsWrong === true) {
     return false;
   }
+
   if(parenthesesArr.length > 0) {
     return false;
   }
@@ -37,25 +44,23 @@ function checkSolutionValidity(solutionCharArr) {
     let shitIsWrongTwo = false;
     for(let j = 0; j < nonParenthesesArr.length; j ++) {
       if( j % 2 === 0) {
-        if(nonParenthesesArr[j] != "letter") {
+        if(nonParenthesesArr[j] !== "letter") {
           shitIsWrongTwo = true;
         }
       }
-      if( j + 1 % 2 === 0) {
-        if(nonParenthesesArr[j] != "operand") {
+      else if( j % 2 === 1) {
+        if(nonParenthesesArr[j] !== "operand") {
           shitIsWrongTwo = true;
         }
       }
     }
-    console.log(shitIsWrongTwo)
     return !shitIsWrongTwo;
   }
-  console.log(parenthesesArr);
-  console.log(nonParenthesesArr)
 
 }
 
 function evaluateSolutionArr(charArr) {
+  var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
   let solutionExpression = "";
   for(let i = 0; i < charArr.length; i ++) {
     let valToAdd = "";
@@ -68,12 +73,15 @@ function evaluateSolutionArr(charArr) {
 
     solutionExpression += valToAdd
   }
-  console.log(solutionExpression)
+  solutionExpression = solutionExpression.replace("×", "*")
+  solutionExpression = solutionExpression.replace("÷", "/")
   let solutionEvaluation = eval(solutionExpression);
   return solutionEvaluation;
 }
 
 export function submitAnswer(props) {
+  let dispatch = props.dispatch;
+
   let validity = checkSolutionValidity(props.solutionCharArr);
   if(validity === true) {
     let answerEvaluation = evaluateSolutionArr(props.solutionCharArr)
@@ -82,11 +90,21 @@ export function submitAnswer(props) {
       return;
     }
     if(answerEvaluation % 27 === 0) {
-      alert("worked!")
+      console.log("correct solution")
+      dispatch({
+        type: 'SUBMIT_ANS',
+        isCorrectSolution: true
+
+      })
       return;
     }
     else {
-      alert("you got it wrong! your answer evaluates to " + alphabet[answerEvaluation - 1 % 27]);
+      console.log("incorrect solution")
+      dispatch({
+        type: 'SUBMIT_ANS',
+        isCorrectSolution: false
+
+      })
       return;
     }
   }
@@ -130,7 +148,6 @@ export function moveChar(char, index, fromBox, toBox, dispatch) {
 }
 
 function letterMove(char, index, fromBox, toBox, dispatch) {
-  // console.log(index);
   dispatch({
     type: 'ADD_CHAR',
     char: char,

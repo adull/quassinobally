@@ -25,7 +25,6 @@ function collectDrop(connect, monitor) {
 
 const charSourceDrag = {
   beginDrag(props) {
-    console.log("begin drag")
     let dispatch = props.dispatch;
     dispatch({
       type: 'TOGGLE_GAPS'
@@ -33,7 +32,6 @@ const charSourceDrag = {
     return {props};
   },
   endDrag(props) {
-    console.log("enddrag")
     let dispatch = props.dispatch;
     dispatch({
       type: 'TOGGLE_GAPS'
@@ -50,9 +48,6 @@ const charSourceDrop = {
   },
   drop(props, monitor, component) {
     let dispatch = props.dispatch;
-    console.log(monitor.getItem())
-    // console.log(props)
-    // console.log(component)
     let char = monitor.getItem().props.value;
     let dropOnHash = props.currentlyOver;
     let fromBox = monitor.getItem().props.currentBox;
@@ -77,7 +72,6 @@ const mapStateToProps = state => {
 export class Character extends React.Component {
   constructor(props) {
     super();
-    // console.log(props)
     this.state = {
       type: props.value.type,
       value: props.value.value,

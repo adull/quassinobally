@@ -2,7 +2,8 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import * as gameLaws from '../components/game/GameLaws';
+// import * as gameLaws from '../components/game/GameLaws';
+import * as gameLaws from '../game/GameLaws';
 
 function mapStateToProps(state, ownProps) {
   return state;
