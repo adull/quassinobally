@@ -9,22 +9,28 @@ const mapStateToProps = state => {
 }
 
 class PageController extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    console.log(this.props)
     if(this.props.showHome) {
+
       return(
         <Home dispatch={this.props.dispatch}/>
       )
     }
-    if(this.props.showGame) {
+    else if(this.props.showGame) {
       return(
         <Game dispatch={this.props.dispatch}/>
       )
     }
-    if(this.props.showInstructions) {
+    else if(this.props.showInstructions) {
       return(
         <Instructions dispatch={this.props.dispatch}/>
       )
+    }
+    else {
+      return <div>you fuckdedup</div>
     }
 
   }
