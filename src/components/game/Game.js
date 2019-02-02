@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../header/Header';
+import Header from '../../containers/Header';
 import Boxes from '../boxes/Boxes';
-// import Buttons from '../buttons/Buttons';
 import Buttons from '../../containers/Buttons';
+import Background from '../../containers/Background';
 
 
 
@@ -13,11 +13,12 @@ class Game extends React.Component {
   }
   render() {
     return (
-        <div className="game-root">
-          <Header />
-          <Boxes />
-          <Buttons />
-        </div>
+      <div className="game-root">
+        <Header />
+        <Background />
+        <Boxes />
+        <Buttons />
+      </div>
     );
   }
 }

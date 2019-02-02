@@ -22,7 +22,6 @@ export function getIndexOfHash(hash, array) {
 }
 
 export function getToBoxArr(toBox) {
-  console.log(toBox);
   if(toBox.type === "letter") {
     return toBox.letterCharArr;
   }

@@ -12,15 +12,22 @@ function mapStateToProps(state, ownProps) {
 class Button extends React.Component {
   constructor(props) {
     super(props);
+    let buttonText = this.props.type
+      .replace(/-/g, ' ')
+      .replace(/^./, function(x){return x.toUpperCase()})
+
     this.state = {
-      type: this.props.type
+      type: buttonText
     }
     this.click = this.click.bind(this);
   }
 
   click() {
-    console.log("clicked on " + this.state.type)
-    if(this.state.type === "submit") {
+    if(this.state.type === "New word") {
+      // console.log(this.props.dispatch);
+      gameLaws.newPuzzle(this.props.dispatch)
+    }
+    if(this.state.type === "Submit") {
       // console.log(this.props)
       gameLaws.submitAnswer(this.props);
     }

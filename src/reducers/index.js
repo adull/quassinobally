@@ -1,10 +1,6 @@
-// import {
-//   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
-//   TOGGLE_HOME_PAGE, TOGGLE_GAME_PAGE, TOGGLE_INSTRUCTIONS_PAGE
-// } from '../actions'
 import {
   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
-  SET_PAGE
+  SET_PAGE, SET_BG_COLOR
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -55,7 +51,9 @@ const initialState = {
   incorrectSubmittedAnswer: false,
   showHome: true,
   showGame: false,
-  showInstructions: false
+  showInstructions: false,
+  showSettings: false,
+  backgroundColor: [0,0,0]
 }
 
 function quassinoballyApp(state = initialState, action) {
@@ -148,13 +146,13 @@ function quassinoballyApp(state = initialState, action) {
         incorrectSubmittedAnswer: false
       }
     case SET_PAGE:
-      console.log(action)
       if(action.page === "home") {
         return {
           ...state,
           showHome: true,
           showGame: false,
-          showInstructions: false
+          showInstructions: false,
+          showSettings: false
         }
       }
       else if(action.page === "game") {
@@ -162,16 +160,32 @@ function quassinoballyApp(state = initialState, action) {
           ...state,
           showHome: false,
           showGame: true,
-          showInstructions: false
+          showInstructions: false,
+          showSettings: false
         }
       }
-      if(action.page === "instructions") {
+      else if(action.page === "instructions") {
         return {
           ...state,
           showHome: false,
           showGame: false,
-          showInstructions: true
+          showInstructions: true,
+          showSettings: false
         }
+      }
+      else if(action.page === "settings") {
+        return {
+          ...state,
+          showHome: false,
+          showGame: false,
+          showInstructions: false,
+          showSettings: true
+        }
+      }
+    case SET_BG_COLOR:
+      return {
+        ...state,
+        backgroundColor: action.color
       }
     default:
       return state

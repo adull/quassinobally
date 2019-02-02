@@ -4,3 +4,10 @@ export function setPage(page, dispatch) {
     page: page
   })
 }
+
+export function setBackgroundColor(color, dispatch) {
+  dispatch({
+    type: 'SET_BG_COLOR',
+    color: color
+  })
+}

@@ -73,8 +73,15 @@ function evaluateSolutionArr(charArr) {
 
     solutionExpression += valToAdd
   }
-  solutionExpression = solutionExpression.replace("×", "*")
-  solutionExpression = solutionExpression.replace("÷", "/")
+
+  String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+  };
+
+  solutionExpression = solutionExpression.replaceAll("×", "*")
+  solutionExpression = solutionExpression.replaceAll("÷", "/")
+  console.log(solutionExpression);
   let solutionEvaluation = eval(solutionExpression);
   return solutionEvaluation;
 }

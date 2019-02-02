@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Home from '../components/home/Home';
 import Game from '../components/game/Game';
 import Instructions from '../components/instructions/Instructions';
+// import Settings from '../components/settings/Settings';
+import Settings from '../containers/Settings';
 
 const mapStateToProps = state => {
   return state;
@@ -14,7 +16,6 @@ class PageController extends React.Component {
   }
   render() {
     if(this.props.showHome) {
-
       return(
         <Home dispatch={this.props.dispatch}/>
       )
@@ -27,6 +28,11 @@ class PageController extends React.Component {
     else if(this.props.showInstructions) {
       return(
         <Instructions dispatch={this.props.dispatch}/>
+      )
+    }
+    else if(this.props.showSettings) {
+      return (
+        <Settings />
       )
     }
     else {

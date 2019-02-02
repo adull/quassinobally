@@ -18,7 +18,7 @@ class Buttons extends React.Component {
     let dispatch = this.props.dispatch;
     return(
       <div className="buttons">
-        <Button type="one" />
+        <Button type="new-word" />
         <Button dispatch={dispatch} type="submit" />
         <Button type="three" />
         <Modal show={this.props.correctSubmittedAnswer || this.props.incorrectSubmittedAnswer}>
