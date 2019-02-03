@@ -11,3 +11,24 @@ export function setBackgroundColor(color, dispatch) {
     color: color
   })
 }
+
+export function setBoxColor(color, dispatch) {
+  dispatch({
+    type: 'SET_BOX_COLOR',
+    color: color
+  })
+}
+
+export function setLetterColor(color, dispatch) {
+  dispatch({
+    type: 'SET_LETTER_COLOR',
+    color: color
+  })
+}
+
+export function setBoxBorderColor(color, dispatch) {
+  dispatch({
+    type: 'SET_BOXBORDER_COLOR',
+    color: color
+  })
+}

@@ -18,9 +18,11 @@ class Characters extends React.Component {
   }
 
   isCurrentlyOver(item) {
-    this.setState({
-      currentlyOver: item
-    })
+    if(!this.props.isOverNothing) {
+      this.setState({
+        currentlyOver: item
+      })
+    }
   }
 
   removeGap() {

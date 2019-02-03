@@ -15,7 +15,6 @@ class Background extends React.Component {
   }
 
   backgroundColor() {
-    console.log(this.props);
     // return "blue"
     this.setState({
       backgroundColor: "blue"
@@ -27,7 +26,6 @@ class Background extends React.Component {
     let green = (parseInt(255 - this.props.backgroundColor[1])).toString()
     let blue = (parseInt(255 - this.props.backgroundColor[2])).toString()
     let bgColor = "rgb(" + red + ", " + green + "," + blue + ")"
-    console.log(this.props.backgroundColor)
     return(
       <div className="background" style={{backgroundColor:  bgColor}}>
       </div>

@@ -1,6 +1,7 @@
 import {
   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
-  SET_PAGE, SET_BG_COLOR
+  SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR,
+  SET_BOXBORDER_COLOR
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -53,7 +54,10 @@ const initialState = {
   showGame: false,
   showInstructions: false,
   showSettings: false,
-  backgroundColor: [0,0,0]
+  backgroundColor: [0,128,256],
+  boxColor: [0, 255, 255],
+  letterColor: [0, 0, 255],
+  boxBorderColor: [0, 0, 255]
 }
 
 function quassinoballyApp(state = initialState, action) {
@@ -68,9 +72,9 @@ function quassinoballyApp(state = initialState, action) {
         return {
           ...state,
           letterCharArr: [
-            ...state.letterCharArr.slice(0, action.index + 1),
+            ...state.letterCharArr.slice(0, action.index),
             newChar,
-            ...state.letterCharArr.slice(action.index + 1)
+            ...state.letterCharArr.slice(action.index)
           ]
         }
       }
@@ -78,9 +82,9 @@ function quassinoballyApp(state = initialState, action) {
         return {
           ...state,
           operandCharArr: [
-            ...state.operandCharArr.slice(0, action.index + 1),
+            ...state.operandCharArr.slice(0, action.index),
             newChar,
-            ...state.operandCharArr.slice(action.index + 1)
+            ...state.operandCharArr.slice(action.index)
           ]
         }
       }
@@ -88,9 +92,9 @@ function quassinoballyApp(state = initialState, action) {
         return {
           ...state,
           solutionCharArr: [
-            ...state.solutionCharArr.slice(0, action.index + 1),
+            ...state.solutionCharArr.slice(0, action.index),
             newChar,
-            ...state.solutionCharArr.slice(action.index + 1)
+            ...state.solutionCharArr.slice(action.index)
           ]
         }
       }
@@ -186,6 +190,21 @@ function quassinoballyApp(state = initialState, action) {
       return {
         ...state,
         backgroundColor: action.color
+      }
+    case SET_BOX_COLOR:
+      return {
+        ...state,
+        boxColor: action.color
+      }
+    case SET_LETTER_COLOR:
+      return {
+        ...state,
+        letterColor: action.color
+      }
+    case SET_BOXBORDER_COLOR:
+      return {
+        ...state,
+        boxBorderColor: action.color
       }
     default:
       return state

@@ -5,6 +5,9 @@ export const TOGGLE_GAPS = 'TOGGLE_GAPS'
 export const NEW_PUZZLE = 'NEW_PUZZLE'
 export const SET_PAGE = 'SET_PAGE'
 export const SET_BG_COLOR = 'SET_BG_COLOR'
+export const SET_BOX_COLOR = 'SET_BOX_COLOR'
+export const SET_LETTER_COLOR = 'SET_LETTER_COLOR'
+export const SET_BOXBORDER_COLOR = 'SET_BOXBORDER_COLOR'
 
 export function addChar(char, index, box) {
   return{
