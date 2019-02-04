@@ -1,6 +1,6 @@
 import {
   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
-  SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR,
+  SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR, SET_BOX_BORDER_WIDTH,
   SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL, SET_HOME_BTN_BG_COLOR,
   SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH
 } from '../actions'
@@ -49,8 +49,11 @@ const initialState = {
   solutionCharArr: [],
   noGaps: true,
   answerSubmitted: false,
+  reasonIncorrect: '',
   correctSubmittedAnswer: false,
   incorrectSubmittedAnswer: false,
+  lackingChars: false,
+  invalidAnswer: false,
   showHome: true,
   showGame: false,
   showInstructions: false,
@@ -58,11 +61,12 @@ const initialState = {
   backgroundColor: [0,128,255],
   boxColor: [0, 255, 255],
   letterColor: [0, 0, 255],
+  boxBorderWidth: 3,
   boxBorderColor: [0, 0, 255],
   homeBtnBgColor: [0, 128, 255],
   homeBtnColor: [255, 255, 255],
   homeBtnBorderColor: [255, 255, 255],
-  homeBtnBorderWidth: 2
+  homeBtnBorderWidth: 2,
 }
 
 function quassinoballyApp(state = initialState, action) {
@@ -136,6 +140,7 @@ function quassinoballyApp(state = initialState, action) {
     case SUBMIT_ANS:
       return {
         ...state,
+        reasonIncorrect: action.reasonIncorrect,
         correctSubmittedAnswer: action.isCorrectSolution,
         incorrectSubmittedAnswer: !action.isCorrectSolution
       }
@@ -207,6 +212,11 @@ function quassinoballyApp(state = initialState, action) {
         ...state,
         letterColor: action.color
       }
+    case SET_BOX_BORDER_WIDTH:
+      return {
+        ...state,
+        boxBorderWidth: action.width
+      }
     case SET_BOXBORDER_COLOR:
       return {
         ...state,
@@ -233,10 +243,10 @@ function quassinoballyApp(state = initialState, action) {
         homeBtnBorderColor: action.color
       }
     case SET_HOME_BTN_BORDER_WIDTH:
-    return {
-      ...state,
-      homeBtnBorderWidth: action.width
-    }
+      return {
+        ...state,
+        homeBtnBorderWidth: action.width
+      }
 
 
     default:

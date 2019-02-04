@@ -32,7 +32,7 @@ class Buttons extends React.Component {
         <Button type="three" />
         <Modal show={this.props.correctSubmittedAnswer || this.props.incorrectSubmittedAnswer}>
           <CorrectSolution dispatch={dispatch} show={this.props.correctSubmittedAnswer} />
-          <IncorrectSolution dispatch={dispatch} closeModal={this.closeModal} show={this.props.incorrectSubmittedAnswer} />
+          <IncorrectSolution reasonIncorrect={this.props.reasonIncorrect} dispatch={dispatch} closeModal={this.closeModal} show={this.props.incorrectSubmittedAnswer} />
         </Modal>
       </div>
     )

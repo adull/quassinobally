@@ -66,10 +66,12 @@ class Box extends React.Component {
     let boxBlue = (parseInt(255 - this.props.boxColor[2])).toString()
     let boxColor = "rgb(" + boxRed + ", " + boxGreen + "," + boxBlue + ")"
 
+    let boxBorderWidth = this.props.boxBorderWidth;
+
     let boxBorderRed = (parseInt(255 - this.props.boxBorderColor[0])).toString()
     let boxBorderGreen = (parseInt(255 - this.props.boxBorderColor[1])).toString()
     let boxBorderBlue = (parseInt(255 - this.props.boxBorderColor[2])).toString()
-    let boxBorderColor = "2px solid rgb(" + boxBorderRed + ", " + boxBorderGreen + "," + boxBorderBlue + ")"
+    let boxBorderColor = boxBorderWidth + "px solid rgb(" + boxBorderRed + ", " + boxBorderGreen + "," + boxBorderBlue + ")"
 
     const { connectDropTarget } = this.props;
 

@@ -26,6 +26,13 @@ export function setLetterColor(color, dispatch) {
   })
 }
 
+export function setBoxBorderWidth(width, dispatch) {
+  dispatch({
+    type: 'SET_BOX_BORDER_WIDTH',
+    width: width
+  })
+}
+
 export function setBoxBorderColor(color, dispatch) {
   dispatch({
     type: 'SET_BOXBORDER_COLOR',

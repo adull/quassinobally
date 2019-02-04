@@ -6,18 +6,32 @@ class IncorrectSolution extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      incorrectReason: props.incorrectReason
+      reasonIncorrect: props.reasonIncorrect,
+      incorrectString: ''
     }
-    this.constructSubtitle = this.constructSubtitle.bind(this);
     this.goHome = this.goHome.bind(this);
   }
-  constructSubtitle() {
-    let incorrectReason = this.state.incorrectReason
-    if(incorrectReason === "invalid") {
-      return "There is a problem with your solution. Make sure you include an operand in between each letter and have used any parentheses correctly."
+  componentWillMount() {
+    console.log("construct subtitle")
+    let reasonIncorrect = this.state.reasonIncorrect;
+    if(reasonIncorrect === "characters") {
+      this.setState({
+        incorrectString: "You must use all of the characters in the character box in your solution."
+      })
     }
-    else if(incorrectReason === "computation") {
-      return "There was a problem with the computation."
+    else if(reasonIncorrect === "invalid") {
+      this.setState({
+        incorrectString: "There is a problem with your solution. Make sure you include an operand in between each letter and have used any parentheses correctly."
+      })
+    }
+    else if(reasonIncorrect === "miscalculation") {
+      this.setState({
+        incorrectString: "There was a problem with the computation."
+      })
+    }
+
+    else {
+      console.log(reasonIncorrect);
     }
   }
   goHome() {
@@ -26,7 +40,6 @@ class IncorrectSolution extends React.Component {
   }
   render() {
     if(this.props.show) {
-      console.log("show")
       return(
           <div className="modal-content">
             <div className="modal-title-section">
@@ -34,7 +47,7 @@ class IncorrectSolution extends React.Component {
                 Incorrect Solution.
               </div>
               <div className="modal-subtitle">
-                {this.constructSubtitle}
+                {this.state.incorrectString}
               </div>
             </div>
             <div className="correct-buttons">

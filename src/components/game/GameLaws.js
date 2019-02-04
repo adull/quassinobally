@@ -81,8 +81,14 @@ function evaluateSolutionArr(charArr) {
 
   solutionExpression = solutionExpression.replaceAll("×", "*")
   solutionExpression = solutionExpression.replaceAll("÷", "/")
-  // console.log(solutionExpression);
-  let solutionEvaluation = eval(solutionExpression);
+  let solutionEvaluation = -1;
+  try {
+    solutionEvaluation = eval(solutionExpression);
+  }
+  catch {
+    return "HUGE ERROR";
+  }
+
   // console.log(solutionExpression)
   return solutionEvaluation;
 }
@@ -94,13 +100,27 @@ export function submitAnswer(props) {
   if(validity === true) {
     let answerEvaluation = evaluateSolutionArr(props.solutionCharArr)
     if(props.letterCharArr.length > 0) {
-      alert("must use all characters");
+      // console.log("must use all characters");
+      dispatch({
+        type: 'SUBMIT_ANS',
+        reasonIncorrect: 'characters',
+        isCorrectSolution: false
+      })
       return;
+    }
+    if(answerEvaluation === "HUGE ERROR") {
+      dispatch({
+        type: 'SUBMIT_ANS',
+        reasonIncorrect: 'invalid',
+        isCorrectSolution: false
+
+      })
     }
     if(answerEvaluation % 27 === 0) {
       console.log("correct solution")
       dispatch({
         type: 'SUBMIT_ANS',
+        reasonIncorrect: '',
         isCorrectSolution: true
 
       })
@@ -110,13 +130,19 @@ export function submitAnswer(props) {
       console.log("incorrect solution")
       dispatch({
         type: 'SUBMIT_ANS',
+        reasonIncorrect: 'miscalculation',
         isCorrectSolution: false
       })
       return;
     }
   }
   else {
-    alert("solution is not valid")
+    console.log("solution is not valid")
+    dispatch({
+      type: 'SUBMIT_ANS',
+      reasonIncorrect: 'invalid',
+      isCorrectSolution: false
+    })
     return;
   }
 

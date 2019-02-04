@@ -26,6 +26,7 @@ class Settings extends React.Component {
     this.updateHomeBtnColor = this.updateHomeBtnColor.bind(this);
     this.updateHomeBtnBorderColor = this.updateHomeBtnBorderColor.bind(this);
     this.updateHomeBtnBorderWidth = this.updateHomeBtnBorderWidth.bind(this);
+    this.updateBoxBorderWidth = this.updateBoxBorderWidth.bind(this);
   }
 
   updateBackgroundColor(color) {
@@ -34,6 +35,10 @@ class Settings extends React.Component {
 
   updateBoxColor(color) {
     appLaws.setBoxColor(color, this.props.dispatch)
+  }
+
+  updateBoxBorderWidth(width) {
+    appLaws.setBoxBorderWidth(width, this.props.dispatch)
   }
 
   updateLetterColor(color) {
@@ -73,6 +78,8 @@ class Settings extends React.Component {
     let letterGreen = this.props.letterColor[1];
     let letterBlue = this.props.letterColor[2];
 
+    let boxBorderWidth = this.props.boxBorderWidth;
+
     let boxBorderRed = this.props.boxBorderColor[0];
     let boxBorderGreen = this.props.boxBorderColor[1];
     let boxBorderBlue = this.props.boxBorderColor[2];
@@ -106,6 +113,10 @@ class Settings extends React.Component {
           </div>
           <ColorPicker red={boxRed} green={boxGreen} blue={boxBlue} updateColor={this.updateBoxColor}/>
           <ColorDisplay red={boxRed} green={boxGreen} blue={boxBlue}/>
+          <div className="box-border-width">
+            Box Border Width
+          </div>
+          <Range step="1" min="0" max="15" value={boxBorderWidth} updateVal={this.updateBoxBorderWidth} />
           <div className="letter-color">
             Letter color
           </div>
