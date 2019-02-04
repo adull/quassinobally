@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 // import * as gameLaws from '../components/game/GameLaws';
 import * as gameLaws from '../game/GameLaws';
 
+import gunSound from '../../assets/audio/gun.wav';
+
 function mapStateToProps(state, ownProps) {
   return state;
 }
@@ -23,6 +25,9 @@ class Button extends React.Component {
   }
 
   click() {
+    // console.log("click")
+    let gunAudio = new Audio(gunSound);
+    gunAudio.play();
     if(this.state.type === "New word") {
       // console.log(this.props.dispatch);
       gameLaws.newPuzzle(this.props.dispatch)

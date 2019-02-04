@@ -9,14 +9,14 @@ import * as actions from '../actions';
 import {arrayIsEqual, lengthOfToBox} from '../functions/index.js';
 import * as gameLaws from '../components/game/GameLaws';
 
+import gunSound from '../assets/audio/gun.wav';
+
 const boxTarget = {
   hover(props, monitor, component) {
   },
   drop(props, monitor, component) {
-    //returns false if dropped in character
-    // this.isOverNothing();
-    // console.log(component);
-    // component.removeHover()
+    let gunAudio = new Audio(gunSound);
+    gunAudio.play();
     let exclusivelyDropped = monitor.isOver({ shallow: true });
     if(exclusivelyDropped) {
       let char = monitor.getItem().props;

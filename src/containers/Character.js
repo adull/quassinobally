@@ -8,6 +8,8 @@ import * as actions from '../actions';
 import * as functions from '../functions';
 import * as gameLaws from '../components/game/GameLaws';
 
+import cockSound from '../assets/audio/cock.wav';
+
 
 function collectDrag(connect, monitor) {
   return {
@@ -25,6 +27,8 @@ function collectDrop(connect, monitor) {
 
 const charSourceDrag = {
   beginDrag(props) {
+    let cockAudio = new Audio(cockSound);
+    cockAudio.play();
     let dispatch = props.dispatch;
     dispatch({
       type: 'TOGGLE_GAPS'

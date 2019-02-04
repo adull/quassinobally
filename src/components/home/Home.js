@@ -2,6 +2,10 @@ import React from 'react'
 import Background from '../../containers/Background';
 import * as appLaws from '../game/AppLaws';
 
+import HomeButton from '../../containers/HomeButton';
+
+import gunSound from '../../assets/audio/gun.wav';
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -26,15 +30,9 @@ class Home extends React.Component {
           Quassinobally
         </div>
         <div className="home-page-buttons">
-          <div className="button play-button" onClick={this.setPageGame}>
-            Play
-          </div>
-          <div className="button instructions-button" onClick={this.setPageInstructions}>
-            Instructions
-          </div>
-          <div className="button settings-button" onClick={this.setPageSettings}>
-            Settings
-          </div>
+          <HomeButton onClick={this.setPageGame} buttonText={"Play"} />
+          <HomeButton onClick={this.setPageInstructions} buttonText={"Instructions"} />
+          <HomeButton onClick={this.setPageSettings} buttonText={"Settings"} />
         </div>
       </div>
     )

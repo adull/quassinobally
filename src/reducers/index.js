@@ -1,7 +1,8 @@
 import {
   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
   SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR,
-  SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL
+  SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL, SET_HOME_BTN_BG_COLOR,
+  SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -54,10 +55,14 @@ const initialState = {
   showGame: false,
   showInstructions: false,
   showSettings: false,
-  backgroundColor: [0,128,256],
+  backgroundColor: [0,128,255],
   boxColor: [0, 255, 255],
   letterColor: [0, 0, 255],
-  boxBorderColor: [0, 0, 255]
+  boxBorderColor: [0, 0, 255],
+  homeBtnBgColor: [0, 128, 255],
+  homeBtnColor: [255, 255, 255],
+  homeBtnBorderColor: [255, 255, 255],
+  homeBtnBorderWidth: 2
 }
 
 function quassinoballyApp(state = initialState, action) {
@@ -207,13 +212,33 @@ function quassinoballyApp(state = initialState, action) {
         ...state,
         boxBorderColor: action.color
       }
-    case CLOSE_INCORRECT_MODAL: {
-      console.log("close incor modal")
+    case CLOSE_INCORRECT_MODAL:
       return {
         ...state,
         incorrectSubmittedAnswer: false
       }
+    case SET_HOME_BTN_BG_COLOR:
+      return {
+        ...state,
+        homeBtnBgColor: action.color
+      }
+    case SET_HOME_BTN_COLOR:
+      return {
+        ...state,
+        homeBtnColor: action.color
+      }
+    case SET_HOME_BTN_BORDER_COLOR:
+      return {
+        ...state,
+        homeBtnBorderColor: action.color
+      }
+    case SET_HOME_BTN_BORDER_WIDTH:
+    return {
+      ...state,
+      homeBtnBorderWidth: action.width
     }
+
+
     default:
       return state
   }

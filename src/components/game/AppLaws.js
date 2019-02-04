@@ -38,3 +38,31 @@ export function closeIncorrectModal(dispatch) {
     type: 'CLOSE_INCORRECT_MODAL'
   })
 }
+
+export function setHomeBtnBgColor(color, dispatch) {
+  dispatch({
+    type: 'SET_HOME_BTN_BG_COLOR',
+    color: color
+  })
+}
+
+export function setHomeBtnColor(color, dispatch) {
+  dispatch({
+    type: 'SET_HOME_BTN_COLOR',
+    color: color
+  })
+}
+
+export function setHomeBtnBorderColor(color, dispatch) {
+  dispatch({
+    type: 'SET_HOME_BTN_BORDER_COLOR',
+    color: color
+  })
+}
+
+export function setHomeBtnBorderWidth(width, dispatch) {
+  dispatch({
+    type: 'SET_HOME_BTN_BORDER_WIDTH',
+    width: width
+  })
+}

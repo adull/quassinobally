@@ -103,7 +103,7 @@ body {
           height: 100%;
           .character {
             position: relative;
-            font-size: 126px;
+            font-size: 2.5vw;
             height: 100%;
             cursor: pointer;
             -webkit-touch-callout: none;
@@ -114,6 +114,7 @@ body {
             user-select: none;
             transition: 0.2s all;
             color: $yellow;
+            // font-size: 2.5vw;
             .character-left {
               width: 50%;
               height: 100%;
@@ -141,29 +142,77 @@ body {
             &.operand-character &.push-left {
               padding-right: 0px;
             }
-            &.length-1 &.length-2 .length-3, .length-4, .length-5, .length-6, {
-              font-size: 20vw;
+            &.length-1 {
+              font-size: 10vw !important;
+            }
+            &.length-2 {
+              font-size: 10vw !important;
+            }
+            &.length-3 {
+              font-size: 10vw !important;
+            }
+            &.length-4 {
+              font-size: 10vw !important;
+            }
+            &.length-5 {
+              font-size: 10vw !important;
+            }
+            &.length-6 {
+              font-size: 10vw !important;
             }
             &.length-7 {
-              font-size: 17.14vw;
+              font-size: 8.57vw !important;
             }
             &.length-8 {
-              font-size: 15vw;
+              font-size: 7.5vw !important;
             }
             &.length-9 {
-              font-size: 13.33vw;
+              font-size: 6.66vw !important;
             }
             &.length-10 {
-              font-size: 12vw;
+              font-size: 6vw !important;
             }
             &.length-11 {
-              font-size: 10.91vw;
+              font-size: 5.45vw !important;
             }
             &.length-12 {
-              font-size: 10vw;
+              font-size: 5vw !important;
             }
             &.length-13 {
-              font-size: 9.23vw;
+              font-size: 4.62vw !important;
+            }
+            &.length-14 {
+              font-size: 4.28vw !important;
+            }
+            &.length-15 {
+              font-size: 4vw !important;
+            }
+            &.length-16 {
+              font-size: 3.75vw !important;
+            }
+            &.length-17 {
+              font-size: 3.52vw !important;
+            }
+            &.length-18 {
+              font-size: 3.33vw !important;
+            }
+            &.length-19 {
+              font-size: 3.15vw !important;
+            }
+            &.length-20 {
+              font-size: 3vw !important;
+            }
+            &.length-21 {
+              font-size: 2.85vw !important;
+            }
+            &.length-22 {
+              font-size: 2.72vw !important;
+            }
+            &.length-23 {
+              font-size: 2.6vw !important;
+            }
+            &.length-24 {
+              font-size: 2.5vw !important;
             }
           }
         }
