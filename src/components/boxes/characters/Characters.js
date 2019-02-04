@@ -55,6 +55,7 @@ class Characters extends React.Component {
                    isCurrentlyOver={this.isCurrentlyOver}
                    currentlyOver={this.state.currentlyOver}
                    removeGap={this.removeGap}
+                   length={value.length}
                    />
       )
     }

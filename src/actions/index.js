@@ -8,6 +8,7 @@ export const SET_BG_COLOR = 'SET_BG_COLOR'
 export const SET_BOX_COLOR = 'SET_BOX_COLOR'
 export const SET_LETTER_COLOR = 'SET_LETTER_COLOR'
 export const SET_BOXBORDER_COLOR = 'SET_BOXBORDER_COLOR'
+export const CLOSE_INCORRECT_MODAL = 'CLOSE_INCORRECT_MODAL'
 
 export function addChar(char, index, box) {
   return{

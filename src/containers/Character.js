@@ -114,6 +114,7 @@ export class Character extends React.Component {
   }
 
   render(){
+    // console.log(this.props.length)
     let currentlyOver = this.props.currentlyOver;
     let identifier = this.props.value.identifier;
     const { connectDropTarget, connectDragSource } = this.props;
@@ -125,7 +126,7 @@ export class Character extends React.Component {
     let letterColor = "rgb(" + red + ", " + green + "," + blue + ")"
 
     return connectDragSource(connectDropTarget(
-      <div className={"character " + this.props.value.type + "-character " + pushLeft} style={{color: letterColor}}>
+      <div className={"length-" + this.props.length + " character " + this.props.value.type + "-character " + pushLeft} style={{color: letterColor}}>
         {this.props.value.value}
       </div>
     ))

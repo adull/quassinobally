@@ -81,8 +81,9 @@ function evaluateSolutionArr(charArr) {
 
   solutionExpression = solutionExpression.replaceAll("×", "*")
   solutionExpression = solutionExpression.replaceAll("÷", "/")
-  console.log(solutionExpression);
+  // console.log(solutionExpression);
   let solutionEvaluation = eval(solutionExpression);
+  // console.log(solutionExpression)
   return solutionEvaluation;
 }
 
@@ -110,7 +111,6 @@ export function submitAnswer(props) {
       dispatch({
         type: 'SUBMIT_ANS',
         isCorrectSolution: false
-
       })
       return;
     }

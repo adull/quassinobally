@@ -32,3 +32,9 @@ export function setBoxBorderColor(color, dispatch) {
     color: color
   })
 }
+
+export function closeIncorrectModal(dispatch) {
+  dispatch({
+    type: 'CLOSE_INCORRECT_MODAL'
+  })
+}

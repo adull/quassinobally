@@ -1,7 +1,7 @@
 import {
   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
   SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR,
-  SET_BOXBORDER_COLOR
+  SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -131,7 +131,8 @@ function quassinoballyApp(state = initialState, action) {
     case SUBMIT_ANS:
       return {
         ...state,
-        correctSubmittedAnswer: !state.correctSubmittedAnswer
+        correctSubmittedAnswer: action.isCorrectSolution,
+        incorrectSubmittedAnswer: !action.isCorrectSolution
       }
     case TOGGLE_GAPS:
       return {
@@ -206,6 +207,13 @@ function quassinoballyApp(state = initialState, action) {
         ...state,
         boxBorderColor: action.color
       }
+    case CLOSE_INCORRECT_MODAL: {
+      console.log("close incor modal")
+      return {
+        ...state,
+        incorrectSubmittedAnswer: false
+      }
+    }
     default:
       return state
   }

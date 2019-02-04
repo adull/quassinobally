@@ -141,6 +141,30 @@ body {
             &.operand-character &.push-left {
               padding-right: 0px;
             }
+            &.length-1 &.length-2 .length-3, .length-4, .length-5, .length-6, {
+              font-size: 20vw;
+            }
+            &.length-7 {
+              font-size: 17.14vw;
+            }
+            &.length-8 {
+              font-size: 15vw;
+            }
+            &.length-9 {
+              font-size: 13.33vw;
+            }
+            &.length-10 {
+              font-size: 12vw;
+            }
+            &.length-11 {
+              font-size: 10.91vw;
+            }
+            &.length-12 {
+              font-size: 10vw;
+            }
+            &.length-13 {
+              font-size: 9.23vw;
+            }
           }
         }
       }

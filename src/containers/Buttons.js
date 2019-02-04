@@ -8,13 +8,22 @@ import IncorrectSolution from '../components/modal-content/IncorrectSolution';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
+import * as appLaws from '../components/game/AppLaws';
 
 function mapStateToProps(state, ownProps) {
   return state;
 }
 
 class Buttons extends React.Component {
+  constructor() {
+    super();
+    this.closeModal = this.closeModal.bind(this);
+  }
+  closeModal() {
+    appLaws.closeIncorrectModal(this.props.dispatch)
+  }
   render() {
+    console.log()
     let dispatch = this.props.dispatch;
     return(
       <div className="buttons">
@@ -23,7 +32,7 @@ class Buttons extends React.Component {
         <Button type="three" />
         <Modal show={this.props.correctSubmittedAnswer || this.props.incorrectSubmittedAnswer}>
           <CorrectSolution dispatch={dispatch} show={this.props.correctSubmittedAnswer} />
-          <IncorrectSolution show={this.props.incorrectSubmittedAnswer} />
+          <IncorrectSolution dispatch={dispatch} closeModal={this.closeModal} show={this.props.incorrectSubmittedAnswer} />
         </Modal>
       </div>
     )
