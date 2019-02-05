@@ -148,7 +148,7 @@ export function submitAnswer(props) {
 
 }
 
-export function canMoveChar(char, toBox) {
+export function canMoveBox(char, toBox) {
   if(char.value.type === "letter") {
     if(toBox.type === "operand") {
       return false;
@@ -167,6 +167,30 @@ export function canMoveChar(char, toBox) {
   }
   else {
     console.log(char.type)
+    return true;
+  }
+}
+
+export function canMoveChar(char, toBox) {
+  if(char.type === "letter") {
+    if(toBox.type === "operand") {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  else if(char.type === "operand") {
+    if(toBox.type === "letter") {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  else {
+    // console.log(char.type)
+    return true;
   }
 }
 

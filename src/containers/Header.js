@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as appLaws from '../components/game/AppLaws';
 
+import cockSound from '../assets/audio/cock.wav';
+
 function mapStateToProps(state, ownProps) {
   return state;
 }
@@ -13,6 +15,8 @@ class Header extends React.Component {
   }
 
   setPageHome() {
+    let cockAudio = new Audio(cockSound);
+    cockAudio.play();
     appLaws.setPage('home', this.props.dispatch)
   }
 

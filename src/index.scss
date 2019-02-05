@@ -67,7 +67,7 @@ body {
 #root {
   height: 100%;
   width: 100%;
-  .game-root {
+  .page {
     border: 0px 2px solid $black;
     height: 100%;
     width: 100%;
@@ -239,6 +239,9 @@ body {
         }
       }
     }
+    .settings-modifier {
+      padding: 15px;
+    }
   }
   .home-page {
     display: flex;
@@ -287,6 +290,7 @@ body {
     background-color: red;
     width: 50vw;
     padding: 50px;
+    text-align: center;
     .button {
       border: 2px solid white;
       background-color: green;

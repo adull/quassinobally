@@ -39,7 +39,7 @@ const boxTarget = {
         dropIndex = lengthOfToBox(toBox);
       }
 
-      if(gameLaws.canMoveChar(char, toBox)) {
+      if(gameLaws.canMoveBox(char, toBox)) {
         gameLaws.moveChar(char.value, dropIndex, fromBox, toBox, dispatch);
       }
       else {

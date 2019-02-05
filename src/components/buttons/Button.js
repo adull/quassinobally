@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // import * as gameLaws from '../components/game/GameLaws';
 import * as gameLaws from '../game/GameLaws';
+import * as appLaws from '../game/AppLaws';
 
 import gunSound from '../../assets/audio/gun.wav';
 
@@ -14,13 +15,6 @@ function mapStateToProps(state, ownProps) {
 class Button extends React.Component {
   constructor(props) {
     super(props);
-    let buttonText = this.props.type
-      .replace(/-/g, ' ')
-      .replace(/^./, function(x){return x.toUpperCase()})
-
-    this.state = {
-      type: buttonText
-    }
     this.click = this.click.bind(this);
   }
 
@@ -28,20 +22,23 @@ class Button extends React.Component {
     // console.log("click")
     let gunAudio = new Audio(gunSound);
     gunAudio.play();
-    if(this.state.type === "New word") {
+    if(this.props.type === "new-word") {
       // console.log(this.props.dispatch);
       gameLaws.newPuzzle(this.props.dispatch)
     }
-    if(this.state.type === "Submit") {
+    else if(this.props.type === "submit") {
       // console.log(this.props)
       gameLaws.submitAnswer(this.props);
+    }
+    else if(this.props.type === "dictionary") {
+      appLaws.toggleDictionary(this.props.dispatch);
     }
   }
 
   render() {
     return(
-      <div className={"button " + this.state.type} onClick={this.click}>
-        {this.state.type}
+      <div className={"button"} onClick={this.click}>
+        {this.props.text}
       </div>
     )
   }

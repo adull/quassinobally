@@ -1,7 +1,8 @@
 import React from 'react';
-// import * as actions from '../../actions';
 import * as gameLaws from '../game/GameLaws';
 import * as appLaws from '../game/AppLaws';
+
+import ModalButton from '../../containers/ModalButton';
 
 class CorrectSolution extends React.Component {
   constructor() {
@@ -29,12 +30,8 @@ class CorrectSolution extends React.Component {
             </div>
           </div>
           <div className="correct-buttons">
-            <div className="button next-puzzle" onClick={this.newPuzzle}>
-              Another Puzzle
-            </div>
-            <div className="button back-home" onClick={this.goHome}>
-              Home
-            </div>
+            <ModalButton onClick={this.newPuzzle} text="Another Puzzle" />
+            <ModalButton onClick={this.goHome} text="Home" />
           </div>
         </div>
       )

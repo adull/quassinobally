@@ -75,8 +75,10 @@ const charSourceDrop = {
     let toBoxArr = functions.getToBoxArr(toBox);
     let dropIndex = functions.getIndexOfHash(dropOnHash, toBoxArr) + addToIndex;
 
-
-    if(gameLaws.canMoveChar(props, toBox)) {
+    // console.log(props)
+    console.log(char)
+    // console.log(component)
+    if(gameLaws.canMoveChar(char, toBox)) {
       gameLaws.moveChar(char, dropIndex, fromBox, toBox, dispatch);
     }
     else {
@@ -123,6 +125,7 @@ export class Character extends React.Component {
     let identifier = this.props.value.identifier;
     const { connectDropTarget, connectDragSource } = this.props;
     let pushLeft = (currentlyOver === identifier && !this.props.noGaps) ? "push-left" : ""
+    // let pushLeft = "";
 
     let red = (parseInt(255 - this.props.letterColor[0])).toString()
     let green = (parseInt(255 - this.props.letterColor[1])).toString()

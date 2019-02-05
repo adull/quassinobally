@@ -13,7 +13,7 @@ class Game extends React.Component {
   }
   render() {
     return (
-      <div className="game-root">
+      <div className="page game-root">
         <Header />
         <Background />
         <Boxes />

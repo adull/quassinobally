@@ -4,6 +4,7 @@ import Button from '../components/buttons/Button';
 import Modal from '../components/modal-content/Modal';
 import CorrectSolution from '../components/modal-content/CorrectSolution';
 import IncorrectSolution from '../components/modal-content/IncorrectSolution';
+import Dictionary from '../components/modal-content/Dictionary';
 
 import { connect } from 'react-redux';
 
@@ -17,22 +18,30 @@ function mapStateToProps(state, ownProps) {
 class Buttons extends React.Component {
   constructor() {
     super();
-    this.closeModal = this.closeModal.bind(this);
+    this.closeIncorrectModal = this.closeIncorrectModal.bind(this);
+    this.closeDictionaryModal = this.closeDictionaryModal.bind(this);
   }
-  closeModal() {
+
+  closeIncorrectModal() {
     appLaws.closeIncorrectModal(this.props.dispatch)
   }
+
+  closeDictionaryModal() {
+    appLaws.toggleDictionary(this.props.dispatch)
+  }
+
   render() {
     console.log()
     let dispatch = this.props.dispatch;
     return(
       <div className="buttons">
-        <Button type="new-word" />
-        <Button dispatch={dispatch} type="submit" />
-        <Button type="three" />
-        <Modal show={this.props.correctSubmittedAnswer || this.props.incorrectSubmittedAnswer}>
+        <Button type="new-word" text="New Word"/>
+        <Button dispatch={dispatch} type="submit" text="Submit"/>
+        <Button type="dictionary" text="Dictionary"/>
+        <Modal show={this.props.correctSubmittedAnswer || this.props.incorrectSubmittedAnswer || this.props.showDictionary}>
           <CorrectSolution dispatch={dispatch} show={this.props.correctSubmittedAnswer} />
-          <IncorrectSolution reasonIncorrect={this.props.reasonIncorrect} dispatch={dispatch} closeModal={this.closeModal} show={this.props.incorrectSubmittedAnswer} />
+          <IncorrectSolution reasonIncorrect={this.props.reasonIncorrect} dispatch={dispatch} closeModal={this.closeIncorrectModal} show={this.props.incorrectSubmittedAnswer} />
+          <Dictionary show={this.props.showDictionary} closeModal={this.closeDictionaryModal}/>
         </Modal>
       </div>
     )

@@ -2,6 +2,8 @@ import React from 'react';
 import * as appLaws from '../game/AppLaws'
 import * as gameLaws from '../game/GameLaws'
 
+import ModalButton from '../../containers/ModalButton';
+
 class IncorrectSolution extends React.Component {
   constructor(props) {
     super(props);
@@ -51,12 +53,8 @@ class IncorrectSolution extends React.Component {
               </div>
             </div>
             <div className="correct-buttons">
-              <div className="button close" onClick={this.props.closeModal}>
-                Retry
-              </div>
-              <div className="button back-home" onClick={this.goHome}>
-                Home
-              </div>
+              <ModalButton onClick={this.props.closeModal} text="Retry" />
+              <ModalButton onClick={this.goHome} text="Home" />
             </div>
           </div>
         )

@@ -73,3 +73,9 @@ export function setHomeBtnBorderWidth(width, dispatch) {
     width: width
   })
 }
+
+export function toggleDictionary(dispatch) {
+  dispatch({
+    type: 'TOGGLE_DICTIONARY'
+  })
+}

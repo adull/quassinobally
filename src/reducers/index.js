@@ -2,7 +2,8 @@ import {
   ADD_CHAR, REMOVE_CHAR, SUBMIT_ANS, TOGGLE_GAPS, NEW_PUZZLE,
   SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR, SET_BOX_BORDER_WIDTH,
   SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL, SET_HOME_BTN_BG_COLOR,
-  SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH
+  SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH,
+  TOGGLE_DICTIONARY
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -56,6 +57,7 @@ const initialState = {
   invalidAnswer: false,
   showHome: true,
   showGame: false,
+  showDictionary: false,
   showInstructions: false,
   showSettings: false,
   backgroundColor: [0,128,255],
@@ -246,6 +248,12 @@ function quassinoballyApp(state = initialState, action) {
       return {
         ...state,
         homeBtnBorderWidth: action.width
+      }
+    case TOGGLE_DICTIONARY:
+      console.log("toggle dict")
+      return {
+        ...state,
+        showDictionary: !state.showDictionary
       }
 
 
