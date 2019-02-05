@@ -97,7 +97,6 @@ class Settings extends React.Component {
     let homeBtnBorderBlue = this.props.homeBtnBorderColor[2];
 
     let homeBtnBorderWidth = this.props.homeBtnBorderWidth;
-    console.log(homeBtnBorderWidth)
 
     return(
       <div className="page settings-page">

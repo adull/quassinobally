@@ -6,30 +6,11 @@ class Characters extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentlyOver: ''
-    }
-    this.isCurrentlyOver = this.isCurrentlyOver.bind(this);
-    this.removeGap = this.removeGap.bind(this);
-    this.removeAllGaps = this.removeAllGaps.bind(this);
-  }
-
-  removeAllGaps() {
-    console.log("remove all gaps");
-  }
-
-  isCurrentlyOver(item) {
-    if(!this.props.isOverNothing) {
-      this.setState({
-        currentlyOver: item
-      })
+      noGaps: false,
     }
   }
 
-  removeGap() {
-    this.setState({
-      currentlyOver: ''
-    })
-  }
+
 
   render() {
     // this is wild inefficient but it works will clean up later in
@@ -52,9 +33,7 @@ class Characters extends React.Component {
         <Character key={i}
                    value={value[i]}
                    currentBox={this.props.currentBox}
-                   isCurrentlyOver={this.isCurrentlyOver}
-                   currentlyOver={this.state.currentlyOver}
-                   removeGap={this.removeGap}
+                   removeGaps={this.removeGaps}
                    length={value.length}
                    />
       )

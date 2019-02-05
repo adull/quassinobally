@@ -40,7 +40,7 @@ const charSourceDrag = {
     dispatch({
       type: 'TOGGLE_GAPS'
     })
-    props.removeGap();
+    // props.removeGap();
     return{props};
   }
 };
@@ -48,10 +48,12 @@ const charSourceDrag = {
 const charSourceDrop = {
   hover(props, monitor, component) {
     let c = component.getDecoratedComponentInstance()
-    props.isCurrentlyOver(props.value.identifier)
+    c.hoveringOver();
   },
   drop(props, monitor, component) {
-    props.isCurrentlyOver('')
+    // props.isCurrentlyOver('')
+    let c = component.getDecoratedComponentInstance()
+    c.removeHoverEffect();
     const hoverBoundingRect = (findDOMNode(
 			component,
 		)).getBoundingClientRect();
@@ -98,34 +100,26 @@ export class Character extends React.Component {
       type: props.value.type,
       value: props.value.value,
       identifier: props.value.identifier,
-      pushLeft: false,
-      pushRight: false
     }
-    this.hoverLeft = this.hoverLeft.bind(this);
-    this.hoverRight = this.hoverRight.bind(this);
   }
 
-  hoverLeft() {
-    this.setState({
-      pushLeft: true,
-      pushRight: false
-    })
+  hoveringOver() {
+    gameLaws.hoveringOver(this.state.identifier, this.props.dispatch)
   }
 
-  hoverRight() {
-    this.setState({
-      pushLeft: false,
-      pushRight: true
-    })
+  removeHoverEffect() {
+    gameLaws.removeHoverEffect(this.props.dispatch);
   }
 
   render(){
     // console.log(this.props.length)
-    let currentlyOver = this.props.currentlyOver;
+    // let currentlyOver = this.props.currentlyOver;
     let identifier = this.props.value.identifier;
     const { connectDropTarget, connectDragSource } = this.props;
-    let pushLeft = (currentlyOver === identifier && !this.props.noGaps) ? "push-left" : ""
-    // let pushLeft = "";
+    // let pushLeft = (currentlyOver === identifier && !this.props.noGaps) ? "push-left" : ""
+    // let pushLeft = this.state.pushLeft ? "push-left" : "";
+    let pushLeft = this.state.identifier === this.props.currentlyHovering ? "push-left" : "" ;
+    // console.log(this.props.currentlyHovering)
 
     let red = (parseInt(255 - this.props.letterColor[0])).toString()
     let green = (parseInt(255 - this.props.letterColor[1])).toString()

@@ -15,6 +15,9 @@ const boxTarget = {
   hover(props, monitor, component) {
   },
   drop(props, monitor, component) {
+    // let c = component.getDecoratedComponentInstance()
+    // console.log(component)
+    component.removeHoverEffect();
     let gunAudio = new Audio(gunSound);
     gunAudio.play();
     let exclusivelyDropped = monitor.isOver({ shallow: true });
@@ -59,7 +62,13 @@ function collect(connect, monitor) {
 class Box extends React.Component {
   constructor(props) {
     super(props);
+    this.removeHoverEffect = this.removeHoverEffect.bind(this);
   }
+
+  removeHoverEffect() {
+    gameLaws.removeHoverEffect(this.props.dispatch);
+  }
+
   render() {
     let boxRed = (parseInt(255 - this.props.boxColor[0])).toString()
     let boxGreen = (parseInt(255 - this.props.boxColor[1])).toString()

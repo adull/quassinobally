@@ -3,7 +3,7 @@ import {
   SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR, SET_BOX_BORDER_WIDTH,
   SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL, SET_HOME_BTN_BG_COLOR,
   SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH,
-  TOGGLE_DICTIONARY
+  TOGGLE_DICTIONARY, HOVERING_OVER, REMOVE_HOVER
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -48,6 +48,7 @@ const initialState = {
   letterCharArr: makeCharArr(randWord, 'letter'),
   operandCharArr: makeCharArr(operands, 'operand'),
   solutionCharArr: [],
+  currentlyHovering: '',
   noGaps: true,
   answerSubmitted: false,
   reasonIncorrect: '',
@@ -250,10 +251,19 @@ function quassinoballyApp(state = initialState, action) {
         homeBtnBorderWidth: action.width
       }
     case TOGGLE_DICTIONARY:
-      console.log("toggle dict")
       return {
         ...state,
         showDictionary: !state.showDictionary
+      }
+    case HOVERING_OVER:
+      return {
+        ...state,
+        currentlyHovering: action.identifier
+      }
+    case REMOVE_HOVER:
+      return {
+        ...state,
+        currentlyHovering: ''
       }
 
 

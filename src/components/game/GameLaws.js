@@ -251,3 +251,16 @@ function operandMove(char, index, fromBox, toBox, dispatch) {
     });
   }
 }
+
+export function hoveringOver(identifier, dispatch) {
+  dispatch({
+    type: 'HOVERING_OVER',
+    identifier: identifier
+  })
+}
+
+export function removeHoverEffect(dispatch) {
+  dispatch({
+    type: 'REMOVE_HOVER'
+  })
+}
