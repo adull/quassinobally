@@ -1,4 +1,5 @@
 import React from 'react';
+import {Router, Route} from 'react-router-dom';
 import PageController from '../containers/PageController';
 
 class AppController extends React.Component {
@@ -11,7 +12,10 @@ class AppController extends React.Component {
 
   render() {
     return(
-      <PageController />
+      // <PageController />
+      <Router basename={'/quassinobally'}>
+        <Route exact path="/" component={PageController} />
+      </Router>
     )
   }
 }
