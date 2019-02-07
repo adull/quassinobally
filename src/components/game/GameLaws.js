@@ -1,7 +1,3 @@
-import { createStore } from 'redux'
-import reducer from '../../reducers'
-import { addChar, removeChar, submitAns } from  '../../actions'
-
 export function newPuzzle(dispatch) {
   dispatch({
     type: 'NEW_PUZZLE'

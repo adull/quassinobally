@@ -9,7 +9,6 @@ import * as serviceWorker from './serviceWorker';
 
 import { createStore } from 'redux'
 import reducer from './reducers'
-import { addChar, removeChar, submitAns } from './actions'
 
 const store = createStore(reducer)
 

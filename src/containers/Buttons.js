@@ -8,7 +8,6 @@ import Dictionary from '../components/modal-content/Dictionary';
 
 import { connect } from 'react-redux';
 
-import * as actions from '../actions';
 import * as appLaws from '../components/game/AppLaws';
 import {arrayToRgb} from '../functions'
 

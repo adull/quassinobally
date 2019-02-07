@@ -7,10 +7,6 @@ import Background from '../../containers/Background';
 
 
 class Game extends React.Component {
-  constructor() {
-    super();
-
-  }
   render() {
     return (
       <div className="page game-root">

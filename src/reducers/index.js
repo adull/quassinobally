@@ -7,14 +7,9 @@ import {
   SET_GAME_BTN_TEXT_COLOR, SET_GAME_BTN_BORDER_COLOR, SET_GAME_BTN_BORDER_WIDTH,
   SET_BACK_HOME_BTN_BG_COLOR, SET_BACK_HOME_BTN_TEXT_COLOR
 } from '../actions'
-import {getCompositeCharArr, getIndexOfHash} from '../functions';
+import {getIndexOfHash} from '../functions';
 
 var randomWords = require('random-words');
-
-function randomWord() {
-  let words = ["hat", "man", "has"]
-  return words[Math.floor(Math.random() * words.length)];
-}
 
 function makeHash() {
   var text = "";
@@ -119,6 +114,7 @@ function quassinoballyApp(state = initialState, action) {
         }
       }
       else {
+        break;
       }
     case REMOVE_CHAR:
       let charHash = action.char.identifier;
@@ -131,7 +127,6 @@ function quassinoballyApp(state = initialState, action) {
             ...state.letterCharArr.slice(removeIndex + 1, )
           ]
         }
-        return state;
       }
       else if(action.box.type === "solution") {
         let removeIndex = getIndexOfHash(charHash, state.solutionCharArr);
@@ -142,7 +137,6 @@ function quassinoballyApp(state = initialState, action) {
             ...state.solutionCharArr.slice(removeIndex + 1, )
           ]
         }
-        return state;
       }
       else {
         console.log(action.box.type)
@@ -207,6 +201,9 @@ function quassinoballyApp(state = initialState, action) {
           showInstructions: false,
           showSettings: true
         }
+      }
+      else {
+        break;
       }
     case SET_BG_COLOR:
       return {

@@ -26,7 +26,6 @@ class Characters extends React.Component {
     else if(boxType === "solution") {
       value = this.props.solutionCharArr;
     }
-    let operandValuesArr = ["+","-","×","÷","(",")"];
     let characterArr = []
     for(var i = 0; i < value.length; i ++) {
       characterArr.push(

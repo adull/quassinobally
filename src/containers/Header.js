@@ -37,7 +37,6 @@ class Header extends React.Component {
     let bgColor = "rgb(" + bgRed + ", " + bgGreen + "," + bgBlue + ")"
     let linkStyle = '';
     if (this.state.hover) {
-      console.log(this.state);
       linkStyle = {backgroundColor: bgColor}
     } else {
       linkStyle = {backgroundColor: 'transparent'}
@@ -45,7 +44,7 @@ class Header extends React.Component {
     return(
       <div className="header">
         <div className="header-back-button" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.setPageHome} style={linkStyle}>
-          <img src={require('../assets/svg/back.svg')} />
+          <img src={require('../assets/svg/back.svg')} alt="back-bitch"/>
           <div className="header-back-button-text">Home</div>
         </div>
 

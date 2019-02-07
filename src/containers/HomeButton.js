@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import * as appLaws from '../components/game/AppLaws';
 
 import gunSound from '../assets/audio/gun.wav';
 

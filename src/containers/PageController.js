@@ -11,9 +11,6 @@ const mapStateToProps = state => {
 }
 
 class PageController extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     if(this.props.showHome) {
       return(

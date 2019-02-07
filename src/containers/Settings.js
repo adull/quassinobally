@@ -32,7 +32,6 @@ class Settings extends React.Component {
     this.updateGameBtnBorderColor = this.updateGameBtnBorderColor.bind(this);
     this.updateGameBtnBorderWidth = this.updateGameBtnBorderWidth.bind(this);
     this.updateBackHomeBtnBackgroundColor = this.updateBackHomeBtnBackgroundColor.bind(this);
-    this.updateBackHomeBtnTextColor = this.updateBackHomeBtnTextColor.bind(this);
   }
 
   updateBackgroundColor(color) {
@@ -91,10 +90,6 @@ class Settings extends React.Component {
     appLaws.setBackHomeBtnBackgroundColor(color, this.props.dispatch)
   }
 
-  updateBackHomeBtnTextColor(color) {
-    appLaws.setBackHomeBtnTextColor(color, this.props.dispatch)
-  }
-
 
   render() {
     let bgRed = this.props.backgroundColor[0];
@@ -146,10 +141,6 @@ class Settings extends React.Component {
     let backHomeBtnBgRed = this.props.backHomeBtnBgColor[0];
     let backHomeBtnBgGreen = this.props.backHomeBtnBgColor[1];
     let backHomeBtnBgBlue = this.props.backHomeBtnBgColor[2];
-
-    let backHomeBtnTextRed = this.props.backHomeBtnTextColor[0];
-    let backHomeBtnTextGreen = this.props.backHomeBtnTextColor[1];
-    let backHomeBtnTextBlue = this.props.backHomeBtnTextColor[2];
 
     return(
       <div className="page settings-page">
