@@ -13,9 +13,8 @@ class AppController extends React.Component {
   render() {
     console.log(process.env.PUBLIC_URL)
     return(
-      // <PageController />
       <BrowserRouter basename={'/quassinobally'}>
-        <Route exact path={'/quassinobally'} component={PageController} />
+        <Route path={`${process.env.PUBLIC_URL}/`} component={PageController} />
       </BrowserRouter>
     )
   }
