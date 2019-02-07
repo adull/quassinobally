@@ -25,9 +25,6 @@ class CorrectSolution extends React.Component {
             <div className="modal-title">
               Correct solution!
             </div>
-            <div className="modal-subtitle">
-              You solved the puzzle in x seconds!
-            </div>
           </div>
           <div className="correct-buttons">
             <ModalButton onClick={this.newPuzzle} text="Another Puzzle" />
