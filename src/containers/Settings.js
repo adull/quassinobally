@@ -27,6 +27,10 @@ class Settings extends React.Component {
     this.updateHomeBtnBorderColor = this.updateHomeBtnBorderColor.bind(this);
     this.updateHomeBtnBorderWidth = this.updateHomeBtnBorderWidth.bind(this);
     this.updateBoxBorderWidth = this.updateBoxBorderWidth.bind(this);
+    this.updateGameBtnBackgroundColor = this.updateGameBtnBackgroundColor.bind(this);
+    this.updateGameBtnTextColor = this.updateGameBtnTextColor.bind(this);
+    this.updateGameBtnBorderColor = this.updateGameBtnBorderColor.bind(this);
+    this.updateGameBtnBorderWidth = this.updateGameBtnBorderWidth.bind(this);
   }
 
   updateBackgroundColor(color) {
@@ -65,6 +69,23 @@ class Settings extends React.Component {
     appLaws.setHomeBtnBorderWidth(width, this.props.dispatch)
   }
 
+  updateGameBtnBackgroundColor(color) {
+    appLaws.setGameBtnBackgroundColor(color, this.props.dispatch)
+  }
+
+  updateGameBtnTextColor(color) {
+    appLaws.setGameBtnTextColor(color, this.props.dispatch)
+  }
+
+  updateGameBtnBorderColor(color) {
+    appLaws.setGameBtnBorderColor(color, this.props.dispatch)
+  }
+
+  updateGameBtnBorderWidth(width) {
+    appLaws.setGameBtnBorderWidth(width, this.props.dispatch)
+  }
+
+
   render() {
     let bgRed = this.props.backgroundColor[0];
     let bgGreen = this.props.backgroundColor[1];
@@ -97,6 +118,20 @@ class Settings extends React.Component {
     let homeBtnBorderBlue = this.props.homeBtnBorderColor[2];
 
     let homeBtnBorderWidth = this.props.homeBtnBorderWidth;
+
+    let gameBtnBackgroundRed = this.props.gameBtnBgColor[0];
+    let gameBtnBackgroundGreen = this.props.gameBtnBgColor[1];
+    let gameBtnBackgroundBlue = this.props.gameBtnBgColor[2];
+
+    let gameBtnTextRed = this.props.gameBtnTextColor[0];
+    let gameBtnTextGreen = this.props.gameBtnTextColor[1];
+    let gameBtnTextBlue = this.props.gameBtnTextColor[2];
+
+    let gameBtnBorderRed = this.props.gameBtnBorderColor[0];
+    let gameBtnBorderGreen = this.props.gameBtnBorderColor[1];
+    let gameBtnBorderBlue = this.props.gameBtnBorderColor[2];
+
+    let gameBtnBorderWidth = this.props.gameBtnBorderWidth;
 
     return(
       <div className="page settings-page">
@@ -145,6 +180,25 @@ class Settings extends React.Component {
             Home Button Border Width
           </div>
           <Range step="1" min="0" max="10" value={homeBtnBorderWidth} updateVal={this.updateHomeBtnBorderWidth} />
+          <div className="game-button-background-color">
+            Game Button Background Color
+          </div>
+          <ColorPicker red={gameBtnBackgroundRed} green={gameBtnBackgroundGreen} blue={gameBtnBackgroundBlue} updateColor={this.updateGameBtnBackgroundColor}/>
+          <ColorDisplay red={gameBtnBackgroundRed} green={gameBtnBackgroundGreen} blue={gameBtnBackgroundBlue}/>
+          <div className="game-button-background-color">
+            Game Button Text Color
+          </div>
+          <ColorPicker red={gameBtnTextRed} green={gameBtnTextGreen} blue={gameBtnTextBlue} updateColor={this.updateGameBtnTextColor}/>
+          <ColorDisplay red={gameBtnTextRed} green={gameBtnTextGreen} blue={gameBtnTextBlue}/>
+          <div className="game-button-background-color">
+            Game Button Border Color
+          </div>
+          <ColorPicker red={gameBtnBorderRed} green={gameBtnBorderGreen} blue={gameBtnBorderBlue} updateColor={this.updateGameBtnBorderColor}/>
+          <ColorDisplay red={gameBtnBorderRed} green={gameBtnBorderGreen} blue={gameBtnBorderBlue}/>
+          <div className="game-button-border-width">
+            Game Button Border Width
+          </div>
+          <Range step="1" min="0" max="10" value={gameBtnBorderWidth} updateVal={this.updateGameBtnBorderWidth} />
 
         </div>
       </div>

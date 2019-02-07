@@ -17,12 +17,16 @@ $bp-xl: 1440px;
 html{
   width: 100%;
   height: 100%;
+  // overflow-y: hidden;
+  position:relative;
 }
 
 body {
   margin: 0 30%;
   padding: 0;
-  height: 100%;
+  // height: 100%;
+  // overflow-y: hidden;
+  position:relative;
   @media(max-width: $bp-md) {
     margin: 0 0;
   }
@@ -31,19 +35,26 @@ body {
 
 .background {
   position: absolute;
+  // position: relative;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  // min-height: 100vh;
+  // height: calc(100% + 10vh);
+  // height: 100vh;
+  height: 100%;
   z-index: -1;
   // background-color: $orange;
 }
 
 .header {
   border-bottom: 2px solid $black;
-  text-align: center;
-  padding: 20px 20px;
   display: flex;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
   .header-back-button {
     height: 50px;
     display: flex;
@@ -65,12 +76,14 @@ body {
 }
 
 #root {
-  height: 100%;
+  // height: 100;
   width: 100%;
   .page {
     border: 0px 2px solid $black;
+    // height: 100vh;
     height: 100%;
     width: 100%;
+    min-height: 100vh;
     -webkit-box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.75);
@@ -79,28 +92,42 @@ body {
       -moz-box-shadow: none;
       box-shadow: none;
     }
+    &.game-page {
+      overflow-y: hidden;
+      height: 100vh;
+    }
 
     .boxes {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      height: 70vh;
       .box {
         margin: 2% 2%;
         padding: 0px 40px;
-        min-height: 126px;
+        height: 20vh;
         border: 2px solid $blue;
-        // height: 50px;
-        height:auto;
-        transform:scaleY(1); // implicit, but good to specify explicitly
-        transform-origin:top; // keep the top of the element in the same place. this is optional.
         transition: 0.2s all;
-        height: 100%;
         background-color: $red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         .characters {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          height: 100%;
+          .letter-character {
+            &.dragging {
+              // opacity: 0;
+              margin-left: 0px;
+              display: none;
+            }
+          }
+          .operand-character {
+            &.dragging {
+              margin-left: 0px;
+            }
+          }
           .character {
             position: relative;
             font-size: 2.5vw;
@@ -134,7 +161,13 @@ body {
               opacity: 0.2;
             }
             &:hover {
-              box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.75);
+              // box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
+              // font-weight: bold;
+              // text-decoration: underline;
+              // border-bottom: 2px solid white;
+              // box-shadow: 0px 2px 300px 1px rgba(0,0,0,1);
+
+
             }
             &.push-left {
               padding-right: 45px;
@@ -142,78 +175,7 @@ body {
             &.operand-character &.push-left {
               padding-right: 0px;
             }
-            &.length-1 {
-              font-size: 10vw !important;
-            }
-            &.length-2 {
-              font-size: 10vw !important;
-            }
-            &.length-3 {
-              font-size: 10vw !important;
-            }
-            &.length-4 {
-              font-size: 10vw !important;
-            }
-            &.length-5 {
-              font-size: 10vw !important;
-            }
-            &.length-6 {
-              font-size: 10vw !important;
-            }
-            &.length-7 {
-              font-size: 8.57vw !important;
-            }
-            &.length-8 {
-              font-size: 7.5vw !important;
-            }
-            &.length-9 {
-              font-size: 6.66vw !important;
-            }
-            &.length-10 {
-              font-size: 6vw !important;
-            }
-            &.length-11 {
-              font-size: 5.45vw !important;
-            }
-            &.length-12 {
-              font-size: 5vw !important;
-            }
-            &.length-13 {
-              font-size: 4.62vw !important;
-            }
-            &.length-14 {
-              font-size: 4.28vw !important;
-            }
-            &.length-15 {
-              font-size: 4vw !important;
-            }
-            &.length-16 {
-              font-size: 3.75vw !important;
-            }
-            &.length-17 {
-              font-size: 3.52vw !important;
-            }
-            &.length-18 {
-              font-size: 3.33vw !important;
-            }
-            &.length-19 {
-              font-size: 3.15vw !important;
-            }
-            &.length-20 {
-              font-size: 3vw !important;
-            }
-            &.length-21 {
-              font-size: 2.85vw !important;
-            }
-            &.length-22 {
-              font-size: 2.72vw !important;
-            }
-            &.length-23 {
-              font-size: 2.6vw !important;
-            }
-            &.length-24 {
-              font-size: 2.5vw !important;
-            }
+
           }
         }
       }
@@ -222,8 +184,10 @@ body {
     .buttons {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-around;
       width: 100%;
+      // height: 20vh;
+      align-items: center;
       .button {
         border: 2px solid $black;
         margin: 10px;
@@ -231,6 +195,10 @@ body {
         text-align: center;
         cursor: pointer;
         transition: 0.2s all;
+        // height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &:hover {
           box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.75);
         }
@@ -240,7 +208,11 @@ body {
       }
     }
     .settings-modifier {
-      padding: 15px;
+      padding: 30px;
+      .color-picker {
+        display:flex;
+
+      }
     }
   }
   .home-page {
@@ -251,7 +223,10 @@ body {
     height: 100vh;
     width: 100%;
     .home-page-title {
-      font-size: 128px;
+      font-size: 6.5vw;
+      @media(max-width: $bp-md) {
+        font-size: 17vw;
+      }
     }
     .home-page-buttons {
       display: flex;
@@ -273,6 +248,12 @@ body {
       }
     }
   }
+  .instructions-page {
+    .instruction {
+      margin: 30px;
+
+    }
+  }
 }
 
 .modal-backdrop {
@@ -280,7 +261,7 @@ body {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
@@ -295,6 +276,18 @@ body {
       border: 2px solid white;
       background-color: green;
       color: orange;
+    }
+    &.dictionary {
+      // color: green;
+
+      .dictionary-columns {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        flex-direction:row;
+      }
+
+      // .dicti
     }
   }
 }

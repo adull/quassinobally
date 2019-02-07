@@ -79,3 +79,33 @@ export function toggleDictionary(dispatch) {
     type: 'TOGGLE_DICTIONARY'
   })
 }
+
+export function setGameBtnBackgroundColor(color, dispatch) {
+  dispatch({
+    type: 'SET_GAME_BTN_BG_COLOR',
+    color: color
+  })
+}
+
+export function setGameBtnBorderColor(color, dispatch) {
+  console.log("set text color")
+  dispatch({
+    type: 'SET_GAME_BTN_BORDER_COLOR',
+    color: color
+  })
+}
+
+export function setGameBtnTextColor(color, dispatch) {
+
+  dispatch({
+    type: 'SET_GAME_BTN_TEXT_COLOR',
+    color: color
+  })
+}
+
+export function setGameBtnBorderWidth(width, dispatch) {
+  dispatch({
+    type: 'SET_GAME_BTN_BORDER_WIDTH',
+    width: width
+  })
+}

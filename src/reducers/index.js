@@ -3,7 +3,8 @@ import {
   SET_PAGE, SET_BG_COLOR, SET_BOX_COLOR, SET_LETTER_COLOR, SET_BOX_BORDER_WIDTH,
   SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL, SET_HOME_BTN_BG_COLOR,
   SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH,
-  TOGGLE_DICTIONARY, HOVERING_OVER, REMOVE_HOVER
+  TOGGLE_DICTIONARY, HOVERING_OVER, REMOVE_HOVER, SET_GAME_BTN_BG_COLOR,
+  SET_GAME_BTN_TEXT_COLOR, SET_GAME_BTN_BORDER_COLOR, SET_GAME_BTN_BORDER_WIDTH
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -70,6 +71,10 @@ const initialState = {
   homeBtnColor: [255, 255, 255],
   homeBtnBorderColor: [255, 255, 255],
   homeBtnBorderWidth: 2,
+  gameBtnBgColor: [0, 128, 255],
+  gameBtnTextColor: [255, 255, 255],
+  gameBtnBorderColor: [255, 255, 255],
+  gameBtnBorderWidth: 2,
 }
 
 function quassinoballyApp(state = initialState, action) {
@@ -265,7 +270,27 @@ function quassinoballyApp(state = initialState, action) {
         ...state,
         currentlyHovering: ''
       }
+    case SET_GAME_BTN_BG_COLOR:
+      return {
+        ...state,
+        gameBtnBgColor: action.color
+      }
+    case SET_GAME_BTN_TEXT_COLOR:
+      return {
+        ...state,
+        gameBtnTextColor: action.color
+      }
+    case SET_GAME_BTN_BORDER_COLOR:
+      return {
+        ...state,
+        gameBtnBorderColor: action.color
 
+      }
+    case SET_GAME_BTN_BORDER_WIDTH:
+      return {
+        ...state,
+        gameBtnBorderWidth: action.width
+      }
 
     default:
       return state

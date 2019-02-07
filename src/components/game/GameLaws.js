@@ -195,6 +195,10 @@ export function canMoveChar(char, toBox) {
 }
 
 export function moveChar(char, index, fromBox, toBox, dispatch) {
+  // console.log(char)
+  // console.log(index)
+  // console.log(fromBox)
+  // console.log(toBox)
   // console.log(index)
   if(char.type === "letter") {
     letterMove(char, index, fromBox, toBox, dispatch);

@@ -11,7 +11,17 @@ function mapStateToProps(state, ownProps) {
 class Header extends React.Component {
   constructor() {
     super();
+    this.state = {
+      hover: false
+    }
     this.setPageHome = this.setPageHome.bind(this);
+    this.toggleHover = this.toggleHover.bind(this);
+  }
+
+  toggleHover() {
+    this.setState({
+      hover: !this.state.hover
+    })
   }
 
   setPageHome() {
@@ -21,9 +31,16 @@ class Header extends React.Component {
   }
 
   render() {
+    let linkStyle;
+    if (this.state.hover) {
+      console.log(this.state);
+      linkStyle = {backgroundColor: 'red'}
+    } else {
+      linkStyle = {backgroundColor: 'blue'}
+    }
     return(
       <div className="header">
-        <div className="header-back-button" onClick={this.setPageHome}>
+        <div className="header-back-button" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.setPageHome}>
           <img src={require('../assets/svg/back.svg')} />
           <div className="header-back-button-text">Home</div>
         </div>

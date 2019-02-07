@@ -37,7 +37,7 @@ class Button extends React.Component {
 
   render() {
     return(
-      <div className={"button"} onClick={this.click}>
+      <div className={"button"} onClick={this.click} style={{backgroundColor: this.props.bgColor, border: this.props.borderWidth + "px solid " + this.props.borderColor, color: this.props.textColor  }}>
         {this.props.text}
       </div>
     )

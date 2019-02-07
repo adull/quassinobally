@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 import * as appLaws from '../components/game/AppLaws';
+import {arrayToRgb} from '../functions'
 
 function mapStateToProps(state, ownProps) {
   return state;
@@ -31,13 +32,16 @@ class Buttons extends React.Component {
   }
 
   render() {
-    console.log()
     let dispatch = this.props.dispatch;
+    let buttonBgColor = arrayToRgb(this.props.gameBtnBgColor);
+    let buttonBorderColor = arrayToRgb(this.props.gameBtnBorderColor);
+    let buttonTextColor = arrayToRgb(this.props.gameBtnTextColor);
+    let buttonBorderWidth = this.props.gameBtnBorderWidth;
     return(
       <div className="buttons">
-        <Button type="new-word" text="New Word"/>
-        <Button dispatch={dispatch} type="submit" text="Submit"/>
-        <Button type="dictionary" text="Dictionary"/>
+        <Button bgColor={buttonBgColor} borderColor={buttonBorderColor} textColor={buttonTextColor} borderWidth={buttonBorderWidth} type="new-word" text="New Word"/>
+        <Button bgColor={buttonBgColor} borderColor={buttonBorderColor} textColor={buttonTextColor} borderWidth={buttonBorderWidth} dispatch={dispatch} type="submit" text="Submit"/>
+        <Button bgColor={buttonBgColor} borderColor={buttonBorderColor} textColor={buttonTextColor} borderWidth={buttonBorderWidth} type="dictionary" text="Dictionary"/>
         <Modal show={this.props.correctSubmittedAnswer || this.props.incorrectSubmittedAnswer || this.props.showDictionary}>
           <CorrectSolution dispatch={dispatch} show={this.props.correctSubmittedAnswer} />
           <IncorrectSolution reasonIncorrect={this.props.reasonIncorrect} dispatch={dispatch} closeModal={this.closeIncorrectModal} show={this.props.incorrectSubmittedAnswer} />

@@ -10,6 +10,8 @@ import * as gameLaws from '../components/game/GameLaws';
 
 import cockSound from '../assets/audio/cock.wav';
 
+import CharacterPreview from '../components/boxes/characters/CharacterPreview';
+
 
 function collectDrag(connect, monitor) {
   return {
@@ -26,7 +28,10 @@ function collectDrop(connect, monitor) {
 }
 
 const charSourceDrag = {
-  beginDrag(props) {
+  beginDrag(props, monitor, component) {
+    // console.log(props)
+    console.log(component)
+    // this.toggleOpacity();
     let cockAudio = new Audio(cockSound);
     cockAudio.play();
     let dispatch = props.dispatch;
@@ -34,6 +39,9 @@ const charSourceDrag = {
       type: 'TOGGLE_GAPS'
     })
     return {props};
+  },
+  isDragging(props, monitor, component) {
+
   },
   endDrag(props) {
     let dispatch = props.dispatch;
@@ -67,19 +75,15 @@ const charSourceDrop = {
     if(mouseX > middleX) {
       addToIndex = 1;
     }
-    // console.log(addToIndex)
 
     let dispatch = props.dispatch;
     let char = monitor.getItem().props.value;
-    let dropOnHash = props.currentlyOver;
+    let dropOnHash = props.currentlyHovering;
     let fromBox = monitor.getItem().props.currentBox;
     let toBox = props.currentBox;
     let toBoxArr = functions.getToBoxArr(toBox);
     let dropIndex = functions.getIndexOfHash(dropOnHash, toBoxArr) + addToIndex;
 
-    // console.log(props)
-    console.log(char)
-    // console.log(component)
     if(gameLaws.canMoveChar(char, toBox)) {
       gameLaws.moveChar(char, dropIndex, fromBox, toBox, dispatch);
     }
@@ -101,6 +105,7 @@ export class Character extends React.Component {
       value: props.value.value,
       identifier: props.value.identifier,
     }
+    // this.getItemStyles = this.getItemStyles.bind(this);
   }
 
   hoveringOver() {
@@ -111,15 +116,16 @@ export class Character extends React.Component {
     gameLaws.removeHoverEffect(this.props.dispatch);
   }
 
-  render(){
-    // console.log(this.props.length)
-    // let currentlyOver = this.props.currentlyOver;
+  render() {
+    // const hoverBoundingRect = (findDOMNode(
+		// 	this
+		// )).getBoundingClientRect();
+    // console.log(hoverBoundingRect);
     let identifier = this.props.value.identifier;
     const { connectDropTarget, connectDragSource } = this.props;
-    // let pushLeft = (currentlyOver === identifier && !this.props.noGaps) ? "push-left" : ""
-    // let pushLeft = this.state.pushLeft ? "push-left" : "";
+    // console.log(this.props)
     let pushLeft = this.state.identifier === this.props.currentlyHovering ? "push-left" : "" ;
-    // console.log(this.props.currentlyHovering)
+    let isDragging = this.props.isDragging ? "dragging" : "" ;
 
     let red = (parseInt(255 - this.props.letterColor[0])).toString()
     let green = (parseInt(255 - this.props.letterColor[1])).toString()
@@ -127,7 +133,8 @@ export class Character extends React.Component {
     let letterColor = "rgb(" + red + ", " + green + "," + blue + ")"
 
     return connectDragSource(connectDropTarget(
-      <div className={"length-" + this.props.length + " character " + this.props.value.type + "-character " + pushLeft} style={{color: letterColor}}>
+      <div className={"length-" + this.props.length + " character " + this.props.value.type + "-character " + pushLeft + " " + isDragging}
+           style={{color: letterColor, fontSize: functions.calcFontSize(this.props.length)}}>
         {this.props.value.value}
       </div>
     ))
