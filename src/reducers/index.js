@@ -4,7 +4,8 @@ import {
   SET_BOXBORDER_COLOR, CLOSE_INCORRECT_MODAL, SET_HOME_BTN_BG_COLOR,
   SET_HOME_BTN_COLOR, SET_HOME_BTN_BORDER_COLOR, SET_HOME_BTN_BORDER_WIDTH,
   TOGGLE_DICTIONARY, HOVERING_OVER, REMOVE_HOVER, SET_GAME_BTN_BG_COLOR,
-  SET_GAME_BTN_TEXT_COLOR, SET_GAME_BTN_BORDER_COLOR, SET_GAME_BTN_BORDER_WIDTH
+  SET_GAME_BTN_TEXT_COLOR, SET_GAME_BTN_BORDER_COLOR, SET_GAME_BTN_BORDER_WIDTH,
+  SET_BACK_HOME_BTN_BG_COLOR, SET_BACK_HOME_BTN_TEXT_COLOR
 } from '../actions'
 import {getCompositeCharArr, getIndexOfHash} from '../functions';
 
@@ -75,6 +76,8 @@ const initialState = {
   gameBtnTextColor: [255, 255, 255],
   gameBtnBorderColor: [255, 255, 255],
   gameBtnBorderWidth: 2,
+  backHomeBtnBgColor: [255, 128, 255],
+  backHomeBtnTextColor: [255, 255, 255]
 }
 
 function quassinoballyApp(state = initialState, action) {
@@ -290,6 +293,17 @@ function quassinoballyApp(state = initialState, action) {
       return {
         ...state,
         gameBtnBorderWidth: action.width
+      }
+    case SET_BACK_HOME_BTN_BG_COLOR:
+      return {
+        ...state,
+        backHomeBtnBgColor: action.color
+
+      }
+    case SET_BACK_HOME_BTN_TEXT_COLOR:
+      return {
+        ...state,
+        backHomeBtnTextColor: action.color
       }
 
     default:

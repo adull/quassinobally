@@ -109,3 +109,17 @@ export function setGameBtnBorderWidth(width, dispatch) {
     width: width
   })
 }
+
+export function setBackHomeBtnBackgroundColor(color, dispatch) {
+  dispatch({
+    type: 'SET_BACK_HOME_BTN_BG_COLOR',
+    color: color
+  })
+}
+
+export function setBackHomeBtnTextColor(color, dispatch) {
+  dispatch({
+    type: 'SET_BACK_HOME_BTN_TEXT_COLOR',
+    color: color
+  })
+}

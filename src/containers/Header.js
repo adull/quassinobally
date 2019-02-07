@@ -31,16 +31,20 @@ class Header extends React.Component {
   }
 
   render() {
-    let linkStyle;
+    let bgRed = (parseInt(255 - this.props.backHomeBtnBgColor[0])).toString()
+    let bgGreen = (parseInt(255 - this.props.backHomeBtnBgColor[1])).toString()
+    let bgBlue = (parseInt(255 - this.props.backHomeBtnBgColor[2])).toString()
+    let bgColor = "rgb(" + bgRed + ", " + bgGreen + "," + bgBlue + ")"
+    let linkStyle = '';
     if (this.state.hover) {
       console.log(this.state);
-      linkStyle = {backgroundColor: 'red'}
+      linkStyle = {backgroundColor: bgColor}
     } else {
-      linkStyle = {backgroundColor: 'blue'}
+      linkStyle = {backgroundColor: 'transparent'}
     }
     return(
       <div className="header">
-        <div className="header-back-button" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.setPageHome}>
+        <div className="header-back-button" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.setPageHome} style={linkStyle}>
           <img src={require('../assets/svg/back.svg')} />
           <div className="header-back-button-text">Home</div>
         </div>

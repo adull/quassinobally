@@ -10,8 +10,6 @@ import * as gameLaws from '../components/game/GameLaws';
 
 import cockSound from '../assets/audio/cock.wav';
 
-import CharacterPreview from '../components/boxes/characters/CharacterPreview';
-
 
 function collectDrag(connect, monitor) {
   return {

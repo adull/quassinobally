@@ -14,7 +14,6 @@ class IncorrectSolution extends React.Component {
     this.goHome = this.goHome.bind(this);
   }
   componentWillMount() {
-    console.log("construct subtitle")
     let reasonIncorrect = this.state.reasonIncorrect;
     if(reasonIncorrect === "characters") {
       this.setState({

@@ -31,6 +31,8 @@ class Settings extends React.Component {
     this.updateGameBtnTextColor = this.updateGameBtnTextColor.bind(this);
     this.updateGameBtnBorderColor = this.updateGameBtnBorderColor.bind(this);
     this.updateGameBtnBorderWidth = this.updateGameBtnBorderWidth.bind(this);
+    this.updateBackHomeBtnBackgroundColor = this.updateBackHomeBtnBackgroundColor.bind(this);
+    this.updateBackHomeBtnTextColor = this.updateBackHomeBtnTextColor.bind(this);
   }
 
   updateBackgroundColor(color) {
@@ -85,6 +87,14 @@ class Settings extends React.Component {
     appLaws.setGameBtnBorderWidth(width, this.props.dispatch)
   }
 
+  updateBackHomeBtnBackgroundColor(color) {
+    appLaws.setBackHomeBtnBackgroundColor(color, this.props.dispatch)
+  }
+
+  updateBackHomeBtnTextColor(color) {
+    appLaws.setBackHomeBtnTextColor(color, this.props.dispatch)
+  }
+
 
   render() {
     let bgRed = this.props.backgroundColor[0];
@@ -132,6 +142,14 @@ class Settings extends React.Component {
     let gameBtnBorderBlue = this.props.gameBtnBorderColor[2];
 
     let gameBtnBorderWidth = this.props.gameBtnBorderWidth;
+
+    let backHomeBtnBgRed = this.props.backHomeBtnBgColor[0];
+    let backHomeBtnBgGreen = this.props.backHomeBtnBgColor[1];
+    let backHomeBtnBgBlue = this.props.backHomeBtnBgColor[2];
+
+    let backHomeBtnTextRed = this.props.backHomeBtnTextColor[0];
+    let backHomeBtnTextGreen = this.props.backHomeBtnTextColor[1];
+    let backHomeBtnTextBlue = this.props.backHomeBtnTextColor[2];
 
     return(
       <div className="page settings-page">
@@ -199,6 +217,11 @@ class Settings extends React.Component {
             Game Button Border Width
           </div>
           <Range step="1" min="0" max="10" value={gameBtnBorderWidth} updateVal={this.updateGameBtnBorderWidth} />
+          <div className="back-home-button-background-color">
+            Back Home Button Background Color
+          </div>
+          <ColorPicker red={backHomeBtnBgRed} green={backHomeBtnBgGreen} blue={backHomeBtnBgBlue} updateColor={this.updateBackHomeBtnBackgroundColor}/>
+          <ColorDisplay red={backHomeBtnBgRed} green={backHomeBtnBgGreen} blue={backHomeBtnBgBlue}/>
 
         </div>
       </div>
