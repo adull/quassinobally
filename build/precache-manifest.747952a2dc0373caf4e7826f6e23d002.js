@@ -16,19 +16,19 @@ self.__precacheManifest = [
     "url": "/quassinobally/static/js/runtime~main.1797652a.js"
   },
   {
-    "revision": "5e1a0bdf4938703703b6",
-    "url": "/quassinobally/static/js/main.5e1a0bdf.chunk.js"
+    "revision": "f1fa4fc425fdbe4174a1",
+    "url": "/quassinobally/static/js/main.f1fa4fc4.chunk.js"
   },
   {
     "revision": "4de2c8183f577c5bd516",
     "url": "/quassinobally/static/js/1.4de2c818.chunk.js"
   },
   {
-    "revision": "5e1a0bdf4938703703b6",
+    "revision": "f1fa4fc425fdbe4174a1",
     "url": "/quassinobally/static/css/main.60b37258.chunk.css"
   },
   {
-    "revision": "4b3c78c710f72917f385f575b814eb3c",
+    "revision": "7d9d43f299a364e543ea31fba9333c87",
     "url": "/quassinobally/index.html"
   }
 ];

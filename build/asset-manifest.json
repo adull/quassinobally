@@ -1,7 +1,7 @@
 {
   "main.css": "/quassinobally/static/css/main.60b37258.chunk.css",
-  "main.js": "/quassinobally/static/js/main.5e1a0bdf.chunk.js",
-  "main.js.map": "/quassinobally/static/js/main.5e1a0bdf.chunk.js.map",
+  "main.js": "/quassinobally/static/js/main.f1fa4fc4.chunk.js",
+  "main.js.map": "/quassinobally/static/js/main.f1fa4fc4.chunk.js.map",
   "static/js/1.4de2c818.chunk.js": "/quassinobally/static/js/1.4de2c818.chunk.js",
   "static/js/1.4de2c818.chunk.js.map": "/quassinobally/static/js/1.4de2c818.chunk.js.map",
   "runtime~main.js": "/quassinobally/static/js/runtime~main.1797652a.js",
@@ -11,6 +11,6 @@
   "static/media/back.svg": "/quassinobally/static/media/back.9c17417b.svg",
   "static/media/cock.wav": "/quassinobally/static/media/cock.abbdba57.wav",
   "index.html": "/quassinobally/index.html",
-  "precache-manifest.b797ea2d9a19cd9368b377af04c18952.js": "/quassinobally/precache-manifest.b797ea2d9a19cd9368b377af04c18952.js",
+  "precache-manifest.747952a2dc0373caf4e7826f6e23d002.js": "/quassinobally/precache-manifest.747952a2dc0373caf4e7826f6e23d002.js",
   "service-worker.js": "/quassinobally/service-worker.js"
 }
