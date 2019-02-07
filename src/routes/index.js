@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import PageController from '../containers/PageController';
 
 class AppController extends React.Component {
@@ -13,9 +13,9 @@ class AppController extends React.Component {
   render() {
     return(
       // <PageController />
-      <Router basename={'/quassinobally'}>
+      <BrowserRouter basename={'/quassinobally'}>
         <Route exact path={`${process.env.PUBLIC_URL}/`} component={PageController} />
-      </Router>
+      </BrowserRouter>
     )
   }
 }
